@@ -42,11 +42,12 @@ type EagerThing = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly period?: string | null;
+  readonly UserId?: string | null;
   readonly text?: string | null;
   readonly createdDateTime?: string | null;
   readonly updatedDateTime?: string | null;
   readonly Periods?: Periods | null;
+  readonly period?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly thingPeriodsId?: string | null;
@@ -58,11 +59,12 @@ type LazyThing = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly period?: string | null;
+  readonly UserId?: string | null;
   readonly text?: string | null;
   readonly createdDateTime?: string | null;
   readonly updatedDateTime?: string | null;
   readonly Periods: AsyncItem<Periods | undefined>;
+  readonly period?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly thingPeriodsId?: string | null;

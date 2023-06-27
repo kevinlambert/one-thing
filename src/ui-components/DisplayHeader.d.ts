@@ -14,8 +14,8 @@ export declare type DisplayHeaderOverridesProps = {
     "Tuesday, 14 June 2023"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type DisplayHeaderProps = React.PropsWithChildren<Partial<ViewProps> & {
-    Title?: String;
-    Date?: String;
+    DateDisplay?: String;
+    HeaderTitle?: String;
 } & {
     overrides?: DisplayHeaderOverridesProps | undefined | null;
 }>;

@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Heading, Text, View } from "@aws-amplify/ui-react";
 export default function DisplayHeader(props) {
-  const { Title, Date, overrides, ...rest } = props;
+  const { DateDisplay, HeaderTitle, overrides, ...rest } = props;
   return (
     <View
       width="155px"
@@ -26,17 +26,18 @@ export default function DisplayHeader(props) {
       <Heading
         width="unset"
         height="unset"
+        label="Today"
         position="absolute"
         top="0px"
         left="0px"
         level="1"
-        title=""
-        children="Today"
+        children={HeaderTitle}
         {...getOverrideProps(overrides, "Heading")}
       ></Heading>
       <Text
         fontFamily="Inter"
         fontSize="14px"
+        label="Tuesday, 14 June 2023"
         fontWeight="400"
         color="rgba(0,0,0,1)"
         lineHeight="21px"
@@ -53,8 +54,7 @@ export default function DisplayHeader(props) {
         left="1px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        Date=""
-        children="Tuesday, 14 June 2023"
+        children={DateDisplay}
         {...getOverrideProps(overrides, "Tuesday, 14 June 2023")}
       ></Text>
     </View>

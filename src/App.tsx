@@ -1,15 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import DisplayHeader from './ui-components/DisplayHeader'
+import React from "react";
+import logo from "./logo.svg";
+import "./App.scss";
+
+import PageThing from "./components/page/Thing";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function MyRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PageThing />}>
+          {/* <Route index element={<PageThing />} /> */}
+          {/* <Route path="/login" element={<Login />} /> */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 function App() {
-  return (
-    <div className="App">
-      <DisplayHeader Date={Date.now().toString()} Title={'3 months'}></DisplayHeader>
-
-    </div>
-  );
+  return <MyRoutes />;
 }
 
 export default App;

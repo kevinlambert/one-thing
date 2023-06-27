@@ -197,13 +197,14 @@ export default function ThingUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    period: "",
+    UserId: "",
     text: "",
     createdDateTime: "",
     updatedDateTime: "",
     Periods: undefined,
+    period: "",
   };
-  const [period, setPeriod] = React.useState(initialValues.period);
+  const [UserId, setUserId] = React.useState(initialValues.UserId);
   const [text, setText] = React.useState(initialValues.text);
   const [createdDateTime, setCreatedDateTime] = React.useState(
     initialValues.createdDateTime
@@ -212,18 +213,20 @@ export default function ThingUpdateForm(props) {
     initialValues.updatedDateTime
   );
   const [Periods, setPeriods] = React.useState(initialValues.Periods);
+  const [period, setPeriod] = React.useState(initialValues.period);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = thingRecord
       ? { ...initialValues, ...thingRecord, Periods }
       : initialValues;
-    setPeriod(cleanValues.period);
+    setUserId(cleanValues.UserId);
     setText(cleanValues.text);
     setCreatedDateTime(cleanValues.createdDateTime);
     setUpdatedDateTime(cleanValues.updatedDateTime);
     setPeriods(cleanValues.Periods);
     setCurrentPeriodsValue(undefined);
     setCurrentPeriodsDisplayValue("");
+    setPeriod(cleanValues.period);
     setErrors({});
   };
   const [thingRecord, setThingRecord] = React.useState(thingModelProp);
@@ -260,11 +263,12 @@ export default function ThingUpdateForm(props) {
     Periods: (r) => `${r?.order ? r?.order + " - " : ""}${r?.id}`,
   };
   const validations = {
-    period: [],
+    UserId: [],
     text: [],
     createdDateTime: [],
     updatedDateTime: [],
     Periods: [],
+    period: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -309,11 +313,12 @@ export default function ThingUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          period,
+          UserId,
           text,
           createdDateTime,
           updatedDateTime,
           Periods,
+          period,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -372,32 +377,33 @@ export default function ThingUpdateForm(props) {
       {...rest}
     >
       <TextField
-        label="Period"
+        label="User id"
         isRequired={false}
         isReadOnly={false}
-        value={period}
+        value={UserId}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              period: value,
+              UserId: value,
               text,
               createdDateTime,
               updatedDateTime,
               Periods,
+              period,
             };
             const result = onChange(modelFields);
-            value = result?.period ?? value;
+            value = result?.UserId ?? value;
           }
-          if (errors.period?.hasError) {
-            runValidationTasks("period", value);
+          if (errors.UserId?.hasError) {
+            runValidationTasks("UserId", value);
           }
-          setPeriod(value);
+          setUserId(value);
         }}
-        onBlur={() => runValidationTasks("period", period)}
-        errorMessage={errors.period?.errorMessage}
-        hasError={errors.period?.hasError}
-        {...getOverrideProps(overrides, "period")}
+        onBlur={() => runValidationTasks("UserId", UserId)}
+        errorMessage={errors.UserId?.errorMessage}
+        hasError={errors.UserId?.hasError}
+        {...getOverrideProps(overrides, "UserId")}
       ></TextField>
       <TextField
         label="Text"
@@ -408,11 +414,12 @@ export default function ThingUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              period,
+              UserId,
               text: value,
               createdDateTime,
               updatedDateTime,
               Periods,
+              period,
             };
             const result = onChange(modelFields);
             value = result?.text ?? value;
@@ -438,11 +445,12 @@ export default function ThingUpdateForm(props) {
             e.target.value === "" ? "" : new Date(e.target.value).toISOString();
           if (onChange) {
             const modelFields = {
-              period,
+              UserId,
               text,
               createdDateTime: value,
               updatedDateTime,
               Periods,
+              period,
             };
             const result = onChange(modelFields);
             value = result?.createdDateTime ?? value;
@@ -466,11 +474,12 @@ export default function ThingUpdateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              period,
+              UserId,
               text,
               createdDateTime,
               updatedDateTime: value,
               Periods,
+              period,
             };
             const result = onChange(modelFields);
             value = result?.updatedDateTime ?? value;
@@ -491,11 +500,12 @@ export default function ThingUpdateForm(props) {
           let value = items[0];
           if (onChange) {
             const modelFields = {
-              period,
+              UserId,
               text,
               createdDateTime,
               updatedDateTime,
               Periods: value,
+              period,
             };
             const result = onChange(modelFields);
             value = result?.Periods ?? value;
@@ -564,6 +574,35 @@ export default function ThingUpdateForm(props) {
           {...getOverrideProps(overrides, "Periods")}
         ></Autocomplete>
       </ArrayField>
+      <TextField
+        label="Period"
+        isRequired={false}
+        isReadOnly={false}
+        value={period}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              UserId,
+              text,
+              createdDateTime,
+              updatedDateTime,
+              Periods,
+              period: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.period ?? value;
+          }
+          if (errors.period?.hasError) {
+            runValidationTasks("period", value);
+          }
+          setPeriod(value);
+        }}
+        onBlur={() => runValidationTasks("period", period)}
+        errorMessage={errors.period?.errorMessage}
+        hasError={errors.period?.hasError}
+        {...getOverrideProps(overrides, "period")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

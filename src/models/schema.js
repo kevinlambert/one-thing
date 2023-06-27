@@ -76,8 +76,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "period": {
-                    "name": "period",
+                "UserId": {
+                    "name": "UserId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -121,6 +121,13 @@ export const schema = {
                             "thingPeriodsId"
                         ]
                     }
+                },
+                "period": {
+                    "name": "period",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -174,6 +181,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.4.3",
-    "version": "03bad7d97bda9b77c554193032f23127"
+    "codegenVersion": "3.4.4",
+    "version": "d538a93a3a68bad3defdcff6bac0f804"
 };

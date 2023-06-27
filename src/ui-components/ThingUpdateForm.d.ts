@@ -14,27 +14,30 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type ThingUpdateFormInputValues = {
-    period?: string;
+    UserId?: string;
     text?: string;
     createdDateTime?: string;
     updatedDateTime?: string;
     Periods?: Periods0;
+    period?: string;
 };
 export declare type ThingUpdateFormValidationValues = {
-    period?: ValidationFunction<string>;
+    UserId?: ValidationFunction<string>;
     text?: ValidationFunction<string>;
     createdDateTime?: ValidationFunction<string>;
     updatedDateTime?: ValidationFunction<string>;
     Periods?: ValidationFunction<Periods0>;
+    period?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ThingUpdateFormOverridesProps = {
     ThingUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    period?: PrimitiveOverrideProps<TextFieldProps>;
+    UserId?: PrimitiveOverrideProps<TextFieldProps>;
     text?: PrimitiveOverrideProps<TextFieldProps>;
     createdDateTime?: PrimitiveOverrideProps<TextFieldProps>;
     updatedDateTime?: PrimitiveOverrideProps<TextFieldProps>;
     Periods?: PrimitiveOverrideProps<AutocompleteProps>;
+    period?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ThingUpdateFormProps = React.PropsWithChildren<{
     overrides?: ThingUpdateFormOverridesProps | undefined | null;

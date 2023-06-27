@@ -1,0 +1,14 @@
+@import "../../styles/color";
+@import "../../styles/spacing";
+
+$height: 60px;
+
+.app-header {
+  height: $height;
+  flex-basis: $height;
+  background-color: $neutral-10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $space-16;
+}

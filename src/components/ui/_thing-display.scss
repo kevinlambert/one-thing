@@ -1,0 +1,15 @@
+@import "../../styles/color";
+@import "../../styles/spacing";
+
+.thing-display {
+  display: flex;
+  border: 1px solid $neutral-40;
+  padding: $space-16;
+  border-radius: $space-16;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: $colors__brand-primary-80;
+}
