@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.scss";
 
+import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -10,9 +11,9 @@ function MyRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PageThing />}>
-          {/* <Route index element={<PageThing />} /> */}
-          {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/thing/:period" element={<PageThing />} />
+        <Route path="/" element={<PageHome />}>
+          {/* <Route path="/thing/:period/edit" element={<PageThing />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
