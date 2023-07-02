@@ -3,8 +3,9 @@ import ThingHeader from "../ui/ThingHeader";
 import ThingDisplay from "../ui/ThingDisplay";
 import ThingEdit from "../ui/ThingEdit";
 import IconButton from "../ui/IconButton";
-import { ReactComponent as IconMore } from "@material-design-icons/svg/outlined/more_vert.svg";
+import { ReactComponent as IconEditCalender } from "@material-design-icons/svg/outlined/edit_calendar.svg";
 import "./_thing-period.scss";
+import { NavLink } from "react-router-dom";
 
 type Props = {
   title: string;
@@ -25,11 +26,13 @@ export default ({ title, date, thingContent, isEdit }: Props) => (
           day: "numeric",
         })}
       ></ThingHeader>
-      <IconButton
-        icon={<IconMore></IconMore>}
-        label="Options"
-        isUnderline={true}
-      ></IconButton>
+      <NavLink to={"edit"}>
+        <IconButton
+          icon={<IconEditCalender></IconEditCalender>}
+          label="Edit"
+          isUnderline={true}
+        ></IconButton>
+      </NavLink>
     </div>
     <div className="margin-bottom-16"></div>
     {isEdit ? (
