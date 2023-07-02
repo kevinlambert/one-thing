@@ -1,0 +1,16 @@
+@import "../../styles/color";
+@import "../../styles/spacing";
+
+.thing-edit-text {
+  resize: none;
+  height: 16vh;
+  min-height: 150px;
+}
+.thing-edit {
+  display: flex;
+  flex-direction: column;
+}
+.thing-edit-controls {
+  display: flex;
+  justify-content: space-between;
+}

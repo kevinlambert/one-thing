@@ -1,8 +1,7 @@
 import * as React from "react";
 import ThingHeader from "../ui/ThingHeader";
-import AppHeader from "../ui/AppHeader";
-import TabBar from "../ui/TabBar";
 import ThingDisplay from "../ui/ThingDisplay";
+import ThingEdit from "../ui/ThingEdit";
 import IconButton from "../ui/IconButton";
 import { ReactComponent as IconMore } from "@material-design-icons/svg/outlined/more_vert.svg";
 import "./_thing-period.scss";
@@ -11,9 +10,10 @@ type Props = {
   title: string;
   date: Date;
   thingContent: string;
+  isEdit?: boolean;
 };
 
-export default ({ title, date, thingContent }: Props) => (
+export default ({ title, date, thingContent, isEdit }: Props) => (
   <>
     <div className="thing-period-header">
       <ThingHeader
@@ -32,6 +32,14 @@ export default ({ title, date, thingContent }: Props) => (
       ></IconButton>
     </div>
     <div className="margin-bottom-16"></div>
-    <ThingDisplay content={thingContent}></ThingDisplay>
+    {isEdit ? (
+      <ThingEdit
+        content={thingContent}
+        onSave={() => {}}
+        onCancel={() => {}}
+      ></ThingEdit>
+    ) : (
+      <ThingDisplay content={thingContent}></ThingDisplay>
+    )}
   </>
 );

@@ -11,10 +11,12 @@ function MyRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/thing/:period" element={<PageThing />} />
-        <Route path="/" element={<PageHome />}>
-          {/* <Route path="/thing/:period/edit" element={<PageThing />} /> */}
-        </Route>
+        <Route path="/thing/:period" element={<PageThing />}></Route>
+        <Route
+          path="/thing/:period/edit"
+          element={<PageThing isEdit={true} />}
+        />
+        <Route path="/" element={<PageHome />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,13 @@
 import * as React from "react";
 import DefaultLayout from "../layouts/Default";
+import FullLayout from "../layouts/Full";
 import ThingPeriod from "../templates/ThingPeriod";
+import ThingPeriodEdit from "../templates/ThingPeriodEdit";
 import { useParams } from "react-router-dom";
+
+type Props = {
+  isEdit?: boolean;
+};
 
 const getData = (period?: string) => {
   const data = {
@@ -13,11 +19,19 @@ const getData = (period?: string) => {
   return data;
 };
 
-const Child = () => {
+const Child = ({ isEdit }: Props) => {
   let { period } = useParams();
 
   const data = getData(period);
-  return (
+  return isEdit ? (
+    <FullLayout>
+      <ThingPeriodEdit
+        title={data.title}
+        date={data.date}
+        thingContent={data.content}
+      ></ThingPeriodEdit>
+    </FullLayout>
+  ) : (
     <DefaultLayout>
       <ThingPeriod
         title={data.title}
@@ -28,8 +42,4 @@ const Child = () => {
   );
 };
 
-export default class Thing extends React.Component {
-  render() {
-    return <Child></Child>;
-  }
-}
+export default ({ isEdit = false }: Props) => <Child isEdit={isEdit}></Child>;

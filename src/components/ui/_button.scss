@@ -1,0 +1,24 @@
+@import "../../styles/color";
+@import "../../styles/spacing";
+
+button {
+  padding: $space-16;
+  border-radius: $space-4;
+  font-weight: 800;
+  border-width: 1px;
+  border-style: solid;
+
+  &.primary {
+    background-color: $colors__brand-primary-80;
+    color: $color__white;
+    border-color: $colors__brand-primary-80;
+  }
+
+  &.secondary {
+    border-color: $colors__brand-primary-80;
+  }
+
+  &.tertiary {
+    border-color: $neutral-40;
+  }
+}
