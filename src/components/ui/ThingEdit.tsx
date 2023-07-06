@@ -10,7 +10,10 @@ type Props = {
 
 export default ({ content, onSave, onCancel }: Props) => (
   <div className="thing-edit">
-    <textarea className="thing-edit-text margin-bottom-16">{content}</textarea>
+    <textarea
+      className="thing-edit-text margin-bottom-16"
+      value={content}
+    ></textarea>
     <div className="thing-edit-controls">
       <Button displayType={"secondary"} onClick={onCancel}>
         Cancel

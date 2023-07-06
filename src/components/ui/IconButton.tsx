@@ -5,10 +5,12 @@ type Props = {
   icon: React.ReactNode;
   label: string;
   isUnderline?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export default ({ icon, label, isUnderline }: Props) => (
+export default ({ icon, label, isUnderline, onClick }: Props) => (
   <div
+    onClick={onClick}
     className={"icon-button" + (isUnderline ? " icon-button--underline" : "")}
   >
     {icon}

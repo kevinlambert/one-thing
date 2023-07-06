@@ -13,24 +13,12 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import { motion } from "framer-motion";
-
-const pageVariants = {
-  initial: {
-    opacity: 0,
-  },
-  in: {
-    opacity: 1,
-  },
-  out: {
-    opacity: 0,
-  },
-};
+import { motion, AnimatePresence } from "framer-motion";
 
 const pageTransition = {
   type: "tween",
   ease: "linear",
-  duration: 1.5,
+  duration: 1,
 };
 
 type Props = {
@@ -41,15 +29,17 @@ const AnimationLayout = () => {
   const { pathname } = useLocation();
   return (
     <DefaultLayout>
+      {/* <AnimatePresence> */}
       <motion.div
         key={pathname}
-        initial="initial"
-        animate="in"
-        variants={pageVariants}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={pageTransition}
       >
         <Outlet />
       </motion.div>
+      {/* </AnimatePresence> */}
     </DefaultLayout>
   );
 };
