@@ -32,13 +32,11 @@ const Child = ({ isEdit }: Props) => {
       ></ThingPeriodEdit>
     </FullLayout>
   ) : (
-    <DefaultLayout>
-      <ThingPeriod
-        title={data.title}
-        date={data.date}
-        thingContent={data.content}
-      ></ThingPeriod>
-    </DefaultLayout>
+    <ThingPeriod
+      title={data.title}
+      date={data.date}
+      thingContent={data.content}
+    ></ThingPeriod>
   );
 };
 
