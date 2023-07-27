@@ -10,6 +10,14 @@
       "StackName": "amplify-onething-staging-81359",
       "StackId": "arn:aws:cloudformation:eu-west-2:574227834093:stack/amplify-onething-staging-81359/c101bfc0-0766-11ee-9319-02790cf27ebc",
       "AmplifyAppId": "d1imzxqzesur6d"
+    },
+    "categories": {
+      "auth": {
+        "OneThing": {}
+      },
+      "api": {
+        "OneThing": {}
+      }
     }
   }
 }

@@ -4,9 +4,12 @@ import { schema } from './schema';
 
 
 
-const { Periods, Thing } = initSchema(schema);
+const { GroupMember, Group, Account, Sphere, ThingPeriod } = initSchema(schema);
 
 export {
-  Periods,
-  Thing
+  GroupMember,
+  Group,
+  Account,
+  Sphere,
+  ThingPeriod
 };

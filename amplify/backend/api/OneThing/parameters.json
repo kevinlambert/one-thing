@@ -1,0 +1,13 @@
+{
+  "AppSyncApiName": "OneThing",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authOneThing",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2023-07-27T10:15:06.874Z",
+  "createAPIKey": 1
+}

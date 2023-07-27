@@ -1,0 +1,47 @@
+type GroupMember @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  isAdmin: Boolean
+  groupID: ID! @index(name: "byGroup")
+  accountID: ID! @index(name: "byAccount")
+  GroupMemberThingPeriod: ThingPeriod @hasOne
+}
+
+type Group @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  GroupMembers: [GroupMember] @hasMany(indexName: "byGroup", fields: ["id"])
+}
+
+type Account @model @auth(rules: [{allow: owner, operations: [create, read, update]}, {allow: public}]) {
+  id: ID!
+  firstName: String
+  lastName: String
+  plan: String
+  AccountSphere: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
+  AccountThingPeriod: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
+  AccountGroupMembers: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
+}
+
+type Sphere @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  SphereThingPeriods: [ThingPeriod] @hasMany(indexName: "bySphere", fields: ["id"])
+  accountID: ID! @index(name: "byAccount")
+}
+
+type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, update]}, {allow: public}]) {
+  id: ID!
+  parentID: ID
+  text: String
+  periodInterval: String
+  periodIncrement: Int
+  startDate: AWSDate
+  endDate: AWSDate
+  createdDateTime: AWSDateTime
+  updatedDateTime: AWSDateTime
+  sphereID: ID! @index(name: "bySphere")
+  accountID: ID! @index(name: "byAccount")
+}
+ 

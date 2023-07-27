@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.scss";
+import { Amplify } from "aws-amplify";
+import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 
 import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
@@ -31,6 +34,7 @@ const AnimationLayout = () => {
     <DefaultLayout>
       {/* <AnimatePresence> */}
       <motion.div
+        className="motion-wrapper"
         key={pathname}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -61,8 +65,8 @@ function MyRoutes() {
   );
 }
 
-function App() {
+function App({ signOut, user }: WithAuthenticatorProps) {
   return <MyRoutes />;
 }
 
-export default App;
+export default withAuthenticator(App);
