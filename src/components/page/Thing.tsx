@@ -25,6 +25,8 @@ const getData = async (period?: string) => {
   // };
 };
 
+const onSaveHandler = (content: string) => {};
+
 const Child = ({ isEdit }: Props) => {
   let { period } = useParams();
 
@@ -43,6 +45,7 @@ const Child = ({ isEdit }: Props) => {
         title={data.title}
         date={data.date}
         thingContent={"test"}
+        onSave={onSaveHandler}
       ></ThingPeriodEdit>
     </FullLayout>
   ) : (

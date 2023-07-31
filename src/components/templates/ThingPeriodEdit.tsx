@@ -11,9 +11,10 @@ type Props = {
   date: Date;
   thingContent: string;
   isEdit?: boolean;
+  onSave: any;
 };
 
-export default ({ title, date, thingContent }: Props) => {
+export default ({ title, date, thingContent, onSave }: Props) => {
   const navigate = useNavigate();
 
   const cancelHandler = () => {
@@ -36,7 +37,7 @@ export default ({ title, date, thingContent }: Props) => {
       <div className="margin-bottom-16"></div>
       <ThingEdit
         content={thingContent}
-        onSave={() => {}}
+        onSave={onSave}
         onCancel={cancelHandler}
       ></ThingEdit>
     </>

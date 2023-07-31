@@ -21,6 +21,7 @@ type Account @model @auth(rules: [{allow: owner, operations: [create, read, upda
   AccountSphere: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
   AccountThingPeriod: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
   AccountGroupMembers: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
+  userID: ID
 }
 
 type Sphere @model @auth(rules: [{allow: public}]) {

@@ -277,6 +277,13 @@ export const schema = {
                         ]
                     }
                 },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -583,5 +590,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "8e19e30f8c23a181211dce6a73225324"
+    "version": "84e949ebf6dfc51e500fb0f1d3b7dc1d"
 };

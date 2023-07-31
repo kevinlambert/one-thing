@@ -8,6 +8,8 @@ import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 import DefaultLayout from "./components/layouts/Default";
 
+import { createUserAccount } from "./api/user";
+
 import {
   BrowserRouter,
   Routes,
@@ -65,7 +67,13 @@ function MyRoutes() {
   );
 }
 
+const accountSetup = async (username: any) => {
+  const result = await createUserAccount(username);
+};
+
 function App({ signOut, user }: WithAuthenticatorProps) {
+  accountSetup(user ? user.username : null);
+
   return <MyRoutes />;
 }
 
