@@ -53,8 +53,8 @@ export const saveThing = async ({
       endDate: endDate.toString(),
       createdDateTime: new Date().toISOString(),
       updatedDateTime: new Date().toISOString(),
-      sphereID: "0",
-      accountID: "0",
+      sphereID,
+      accountID,
     })
   );
 };
