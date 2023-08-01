@@ -51,10 +51,10 @@ export const saveThing = async ({
       periodIncrement,
       startDate: startDate.toString(),
       endDate: endDate.toString(),
-      createdDateTime: Date.now().toString(),
-      updatedDateTime: Date.now().toString(),
-      sphereID,
-      accountID,
+      createdDateTime: new Date().toISOString(),
+      updatedDateTime: new Date().toISOString(),
+      sphereID: "0",
+      accountID: "0",
     })
   );
 };

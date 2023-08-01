@@ -9,23 +9,15 @@ import { NavLink } from "react-router-dom";
 
 type Props = {
   title: string;
-  date: Date;
-  thingContent: string;
+  date: string;
+  thingContent: string | null | undefined;
   isEdit?: boolean;
 };
 
 export default ({ title, date, thingContent, isEdit }: Props) => (
   <>
     <div className="thing-period-header">
-      <ThingHeader
-        Title={title}
-        DisplayDate={date.toLocaleDateString("en-us", {
-          weekday: "long",
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      ></ThingHeader>
+      <ThingHeader Title={title} DisplayDate={date}></ThingHeader>
       <NavLink to={"edit"}>
         <IconButton
           icon={<IconEditCalender></IconEditCalender>}
@@ -35,14 +27,7 @@ export default ({ title, date, thingContent, isEdit }: Props) => (
       </NavLink>
     </div>
     <div className="margin-bottom-16"></div>
-    {isEdit ? (
-      <ThingEdit
-        content={thingContent}
-        onSave={() => {}}
-        onCancel={() => {}}
-      ></ThingEdit>
-    ) : (
-      <ThingDisplay content={thingContent}></ThingDisplay>
-    )}
+
+    <ThingDisplay content={thingContent || ""}></ThingDisplay>
   </>
 );

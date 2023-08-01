@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
-  date: Date;
-  thingContent: string;
+  date: string;
+  thingContent: string | null | undefined;
   isEdit?: boolean;
   onSave: any;
 };
@@ -24,19 +24,11 @@ export default ({ title, date, thingContent, onSave }: Props) => {
   return (
     <>
       <div className="thing-period-header">
-        <ThingHeader
-          Title={title}
-          DisplayDate={date.toLocaleDateString("en-us", {
-            weekday: "long",
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })}
-        ></ThingHeader>
+        <ThingHeader Title={title} DisplayDate={date}></ThingHeader>
       </div>
       <div className="margin-bottom-16"></div>
       <ThingEdit
-        content={thingContent}
+        content={thingContent || ""}
         onSave={onSave}
         onCancel={cancelHandler}
       ></ThingEdit>

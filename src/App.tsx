@@ -55,10 +55,13 @@ function MyRoutes() {
     <BrowserRouter>
       <Routes>
         <Route element={<AnimationLayout />}>
-          <Route path="/thing/:period" element={<PageThing />}></Route>
+          <Route
+            path="/thing/:periodInterval/:periodIncrement"
+            element={<PageThing />}
+          ></Route>
         </Route>
         <Route
-          path="/thing/:period/edit"
+          path="/thing/:periodInterval/:periodIncrement/edit"
           element={<PageThing isEdit={true} />}
         />
         <Route path="/" element={<PageHome />}></Route>

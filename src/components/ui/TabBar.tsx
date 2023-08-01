@@ -8,16 +8,16 @@ import { NavLink } from "react-router-dom";
 
 export default () => (
   <div className="tabbar">
-    <NavLink to={"/thing/3months"}>
+    <NavLink to={"/thing/month/3"}>
       <IconButton
         icon={<IconCalenderMonth></IconCalenderMonth>}
         label="3 Months"
       ></IconButton>
     </NavLink>
-    <NavLink to={"/thing/week"}>
+    <NavLink to={"/thing/week/0"}>
       <IconButton icon={<IconWeek></IconWeek>} label="This week"></IconButton>
     </NavLink>
-    <NavLink to={"/thing/today"}>
+    <NavLink to={"/thing/day/0"}>
       <IconButton icon={<IconToday></IconToday>} label="Today"></IconButton>
     </NavLink>
   </div>
