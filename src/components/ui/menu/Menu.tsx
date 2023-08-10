@@ -1,9 +1,10 @@
-import React, { useEffect, MouseEvent } from "react";
+import React, { useEffect, MouseEvent, useContext } from "react";
 import "./_menu.scss";
 import { NavLink, useLocation } from "react-router-dom";
 import IconButton from "../IconButton";
 import { ReactComponent as IconClose } from "@material-design-icons/svg/outlined/close.svg";
 import ModalBackground from "../modal";
+import SignOut from "./SignOut";
 
 type Props = {
   isMenuOpen: boolean;
@@ -37,7 +38,7 @@ export default ({ isMenuOpen, onCloseHandler }: Props) => {
         <div className="menu-items" onClick={linkClickedHander}>
           <NavLink to={"/thing/3months"}>Set focus period</NavLink>
           <NavLink to={"/thing/week"}>Subscription</NavLink>
-          <NavLink to={"/thing/today"}>Sign out</NavLink>
+          <SignOut></SignOut>
         </div>
       </div>
     </>

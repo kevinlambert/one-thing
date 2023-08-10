@@ -487,20 +487,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "createdDateTime": {
-                    "name": "createdDateTime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "updatedDateTime": {
-                    "name": "updatedDateTime",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "sphereID": {
                     "name": "sphereID",
                     "isArray": false,
@@ -590,5 +576,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "84e949ebf6dfc51e500fb0f1d3b7dc1d"
+    "version": "4ad02f2b1512dc1a5ecc1aa5216ebe01"
 };

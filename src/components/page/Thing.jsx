@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import DefaultLayout from "../layouts/Default";
 import FullLayout from "../layouts/Full";
 import ThingPeriod from "../templates/ThingPeriod";
@@ -29,6 +29,7 @@ const saveData = ({
   periodIncrement,
   startDate,
   endDate,
+  accountID,
 }) => {
   saveThing({
     // focusPeriodID,
@@ -38,7 +39,7 @@ const saveData = ({
     startDate: AWSDate(startDate),
     endDate: AWSDate(endDate),
     // sphereID,
-    // accountID,
+    accountID,
   });
 };
 
@@ -46,11 +47,13 @@ export default ({ isEdit = false }) => {
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
 
-  const [data, setData] = useState({
-    startDate: new Date().toISOString(),
-    endDate: new Date().toISOString(),
-    text: "",
-  });
+  // const [data, setData] = useState({
+  //   startDate: new Date().toISOString(),
+  //   endDate: new Date().toISOString(),
+  //   text: "",
+  // });
+
+  const data = {};
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -65,7 +68,13 @@ export default ({ isEdit = false }) => {
   const date = dateTitle(data.startDate || "", data.endDate || "");
 
   const onSaveHandler = (content) => {
-    saveData({ content, periodInterval, periodIncrement, ...data });
+    saveData({
+      content,
+      periodInterval,
+      periodIncrement,
+      ...data,
+      // accountID: storeState.account.id,
+    });
   };
 
   return isEdit ? (

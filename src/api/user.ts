@@ -1,26 +1,38 @@
 import { DataStore } from "@aws-amplify/datastore";
 import { Account } from "../models";
 
-export const getUserAccount = async (userID: string) => {
-  return await DataStore.query(Account, (item) => item.userID.eq(userID));
+const getUserAccount = async (userID: string) => {
+  // const result = await DataStore.query(Account);
+  const result = await DataStore.query(Account, (item) => {
+    return item.userID.eq(userID);
+  });
+
+  return result.length ? result[0] : null;
 };
 
-export const createUserAccount = async (userID: string) => {
+const createUserAccount = async (userID: string) => {
   if (userID) {
-    const existingAccount = await getUserAccount(userID);
+    let existingAccount = await getUserAccount(userID);
 
-    return existingAccount.length === 0
-      ? await DataStore.save(
-          new Account({
-            firstName: "",
-            lastName: "",
-            plan: "",
-            userID,
-            AccountSphere: [],
-            AccountThingPeriod: [],
-            AccountGroupMembers: [],
-          })
-        )
-      : null;
+    if (!existingAccount) {
+      existingAccount = await DataStore.save(
+        new Account({
+          firstName: "Kevin",
+          lastName: "",
+          plan: "",
+          userID,
+          // AccountSphere: [],
+          // AccountThingPeriod: [],
+          // AccountGroupMembers: [],
+        })
+      );
+    }
+
+    return existingAccount;
   }
+};
+
+export default {
+  getUserAccount,
+  createUserAccount,
 };

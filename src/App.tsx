@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./App.scss";
-import { Amplify } from "aws-amplify";
-import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 
 import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 import DefaultLayout from "./components/layouts/Default";
-
-import { createUserAccount } from "./api/user";
+import { AuthEventHook } from "./util/account";
+import { DatastoreEventHook } from "./util/datastore";
 
 import {
   BrowserRouter,
@@ -50,7 +48,7 @@ const AnimationLayout = () => {
   );
 };
 
-function MyRoutes() {
+const MyRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -68,16 +66,11 @@ function MyRoutes() {
       </Routes>
     </BrowserRouter>
   );
-}
-
-const accountSetup = async (username: any) => {
-  const result = await createUserAccount(username);
 };
 
-function App({ signOut, user }: WithAuthenticatorProps) {
-  accountSetup(user ? user.username : null);
+AuthEventHook();
+DatastoreEventHook();
 
-  return <MyRoutes />;
-}
+const App = () => <MyRoutes />;
 
 export default withAuthenticator(App);

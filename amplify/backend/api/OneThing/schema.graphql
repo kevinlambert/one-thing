@@ -40,8 +40,6 @@ type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, 
   periodIncrement: Int
   startDate: AWSDate
   endDate: AWSDate
-  createdDateTime: AWSDateTime
-  updatedDateTime: AWSDateTime
   sphereID: ID! @index(name: "bySphere")
   accountID: ID! @index(name: "byAccount")
 }

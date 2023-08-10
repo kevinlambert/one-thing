@@ -3,7 +3,7 @@ import "./_app-header.scss";
 import { ReactComponent as IconMenu } from "@material-design-icons/svg/outlined/menu.svg";
 
 import IconButton from "./IconButton";
-import Menu from "./menu";
+import Menu from "./menu/Menu";
 
 type Props = {
   isHideMenu?: boolean;

@@ -5,10 +5,13 @@ import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
-import { ThemeProvider } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports";
 import "@aws-amplify/ui-react/styles.css";
+
+import store from "./store/store";
+import { Provider as ReduxProvider } from "react-redux";
+
 Amplify.configure(awsconfig);
 
 const root = ReactDOM.createRoot(
@@ -16,7 +19,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ReduxProvider store={store}>
+      <App />
+    </ReduxProvider>
   </React.StrictMode>
 );
 
