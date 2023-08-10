@@ -8,6 +8,8 @@ import DefaultLayout from "./components/layouts/Default";
 import { AuthEventHook } from "./util/account";
 import { DatastoreEventHook } from "./util/datastore";
 
+import Loading from "./components/ui/loading/Loading";
+
 import {
   BrowserRouter,
   Routes,
@@ -71,6 +73,11 @@ const MyRoutes = () => {
 AuthEventHook();
 DatastoreEventHook();
 
-const App = () => <MyRoutes />;
+const App = () => (
+  <>
+    <Loading />
+    <MyRoutes />
+  </>
+);
 
 export default withAuthenticator(App);

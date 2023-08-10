@@ -2,7 +2,6 @@ import { DataStore } from "@aws-amplify/datastore";
 import { Account } from "../models";
 
 const getUserAccount = async (userID: string) => {
-  // const result = await DataStore.query(Account);
   const result = await DataStore.query(Account, (item) => {
     return item.userID.eq(userID);
   });

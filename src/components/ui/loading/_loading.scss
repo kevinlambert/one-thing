@@ -1,0 +1,14 @@
+@import "../../../styles/color";
+@import "../../../styles/spacing";
+@import "../../../styles/z-index";
+
+.loading-container {
+  z-index: $z__modal-content;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-color: $colors__primary_background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
