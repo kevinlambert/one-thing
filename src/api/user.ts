@@ -16,7 +16,7 @@ const createUserAccount = async (userID: string) => {
     if (!existingAccount) {
       existingAccount = await DataStore.save(
         new Account({
-          firstName: "Kevin",
+          firstName: "",
           lastName: "",
           plan: "",
           userID,

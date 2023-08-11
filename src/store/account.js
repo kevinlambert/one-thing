@@ -12,8 +12,8 @@ export const fetchAccountByUserID = createAsyncThunk(
 export const createAccount = createAsyncThunk(
   "account/createAccount",
   async (userId) => {
-    const data = await userAPI.createUserAccount(userId);
-    const { id, firstName, lastName, userID } = data;
+    const account = await userAPI.createUserAccount(userId);
+    const { id, firstName, lastName, userID } = account;
     return { id, firstName, lastName, userID };
   }
 );
