@@ -20,7 +20,6 @@ const getSpheresByAccountID = async (accountID: string) => {
 
 const createSphere = async ({
   name = "",
-  description = "",
   SphereThingPeriods = [],
   isDefault = false,
   accountID,
@@ -29,7 +28,6 @@ const createSphere = async ({
     const data = await DataStore.save(
       new Sphere({
         name,
-        description,
         SphereThingPeriods,
         isDefault,
         accountID,

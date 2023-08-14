@@ -97,3 +97,9 @@ const SetCurrentSphere = async () => {
   const sphere = defaultSphere || state.spheres[0];
   await store.dispatch(setCurrentSphere(sphere));
 };
+
+const GetThings = async () => {
+  // 3month
+  // this week
+  // today
+};

@@ -121,7 +121,6 @@ type EagerSphere = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly description?: string | null;
   readonly SphereThingPeriods?: (ThingPeriod | null)[] | null;
   readonly isDefault?: boolean | null;
   readonly accountID: string;
@@ -136,7 +135,6 @@ type LazySphere = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly description?: string | null;
   readonly SphereThingPeriods: AsyncCollection<ThingPeriod>;
   readonly isDefault?: boolean | null;
   readonly accountID: string;
@@ -156,7 +154,6 @@ type EagerThingPeriod = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly parentID?: string | null;
   readonly text?: string | null;
   readonly periodInterval?: string | null;
   readonly periodIncrement?: number | null;
@@ -174,7 +171,6 @@ type LazyThingPeriod = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly parentID?: string | null;
   readonly text?: string | null;
   readonly periodInterval?: string | null;
   readonly periodIncrement?: number | null;

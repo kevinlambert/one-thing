@@ -354,13 +354,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "SphereThingPeriods": {
                     "name": "SphereThingPeriods",
                     "isArray": true,
@@ -450,13 +443,6 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
-                    "attributes": []
-                },
-                "parentID": {
-                    "name": "parentID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
                     "attributes": []
                 },
                 "text": {
@@ -583,5 +569,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "36b56c1f3ab7617387327f29fa420a9d"
+    "version": "e48a00c608c513f2b7dd4cf2d102ee6b"
 };

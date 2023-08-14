@@ -3,27 +3,29 @@ import { ThingPeriod } from "../models";
 import { periodIntervalType } from "./periodInterval";
 
 type getThingProps = {
-  focusPeriodID: string | null;
+  currentDate: string;
   periodInterval: periodIntervalType;
   periodIncrement: number;
+  sphereID: string;
+  accountID: string;
 };
 
-export const getThing = async ({
-  focusPeriodID,
-  periodInterval,
-  periodIncrement,
+const getCurrentThingsBySphere = async ({
+  currentDate,
+  sphereID,
+  accountID,
 }: getThingProps) => {
   return await DataStore.query(ThingPeriod, (thing) =>
     thing.and((thing) => [
-      thing.parentID.eq(focusPeriodID),
-      thing.periodInterval.eq(periodInterval),
-      thing.periodIncrement.eq(periodIncrement),
+      thing.startDate.ge(currentDate),
+      thing.endDate.le(currentDate),
+      thing.sphereID.eq(sphereID),
+      thing.accountID.eq(accountID),
     ])
   );
 };
 
 type saveProps = {
-  focusPeriodID: string;
   text: string;
   periodInterval: periodIntervalType;
   periodIncrement: number;
@@ -33,8 +35,7 @@ type saveProps = {
   accountID: string;
 };
 
-export const saveThing = async ({
-  focusPeriodID,
+const saveThing = async ({
   text,
   periodInterval,
   periodIncrement = 0,
@@ -45,12 +46,11 @@ export const saveThing = async ({
 }: saveProps) => {
   await DataStore.save(
     new ThingPeriod({
-      parentID: focusPeriodID,
       text,
       periodInterval,
       periodIncrement,
-      startDate: startDate.toString(),
-      endDate: endDate.toString(),
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
       sphereID,
       accountID,
     })
@@ -60,16 +60,31 @@ export const saveThing = async ({
 type updateProps = {
   id: string;
   newText: string;
+  newStartDate?: Date;
+  newEndDate?: Date;
 };
 
-export const updateThing = async ({ id, newText }: updateProps) => {
+const updateThing = async ({
+  id,
+  newText,
+  newStartDate,
+  newEndDate,
+}: updateProps) => {
   const original = await DataStore.query(ThingPeriod, id);
 
   if (original) {
     const updatedThing = await DataStore.save(
       ThingPeriod.copyOf(original, (updated) => {
         updated.text = newText;
+        newStartDate ? (updated.startDate = newStartDate.toISOString()) : null;
+        newEndDate ? (updated.endDate = newEndDate.toISOString()) : null;
       })
     );
   }
+};
+
+export default {
+  getCurrentThingsBySphere,
+  saveThing,
+  updateThing,
 };

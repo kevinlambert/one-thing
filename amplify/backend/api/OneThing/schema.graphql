@@ -27,7 +27,6 @@ type Account @model @auth(rules: [{allow: owner, operations: [create, read, upda
 type Sphere @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  description: String
   SphereThingPeriods: [ThingPeriod] @hasMany(indexName: "bySphere", fields: ["id"])
   isDefault: Boolean
   accountID: ID! @index(name: "byAccount")
@@ -35,7 +34,6 @@ type Sphere @model @auth(rules: [{allow: public}]) {
 
 type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, update]}, {allow: public}]) {
   id: ID!
-  parentID: ID
   text: String
   periodInterval: String
   periodIncrement: Int
