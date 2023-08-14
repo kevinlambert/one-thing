@@ -377,6 +377,13 @@ export const schema = {
                         ]
                     }
                 },
+                "isDefault": {
+                    "name": "isDefault",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "accountID": {
                     "name": "accountID",
                     "isArray": false,
@@ -576,5 +583,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "4ad02f2b1512dc1a5ecc1aa5216ebe01"
+    "version": "36b56c1f3ab7617387327f29fa420a9d"
 };

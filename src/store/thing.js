@@ -3,14 +3,13 @@ import sphereAPI from "../api/sphere";
 
 export const createSphere = createAsyncThunk(
   "sphere/createSphere",
-  async ({ name, isDefault, accountID }) => {
+  async ({ name, accountID }) => {
     const data = await sphereAPI.createSphere({
       name,
-      isDefault,
       accountID,
     });
     const { id } = data;
-    return { id, name, isDefault, accountID };
+    return { id, name, accountID };
   }
 );
 
@@ -20,16 +19,20 @@ export const getSpheresByAccountID = createAsyncThunk(
     const data = await sphereAPI.getSpheresByAccountID(accountID);
 
     return data.map((sphere) => {
-      const { id, name, isDefault, accountID } = sphere;
-      return { id, name, isDefault, accountID };
+      const { id, name, description, accountID } = sphere;
+      return { id, name, description, accountID };
     });
   }
 );
 
 const sphereSlice = createSlice({
-  name: "sphere",
+  name: "thing",
   initialState: [],
-  reducers: {},
+  reducers: {
+    setCurrentSphere(state, action) {
+      state.currentSphere = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createSphere.fulfilled, (state, action) => {
       state.push(action.payload);
@@ -41,6 +44,7 @@ const sphereSlice = createSlice({
   },
 });
 
-const { reducer } = sphereSlice;
+const { actions, reducer } = sphereSlice;
+export const { setCurrentSphere } = actions;
 
 export default reducer;

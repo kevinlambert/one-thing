@@ -6,6 +6,7 @@ type createProps = {
   name?: string;
   description?: string;
   SphereThingPeriods?: [];
+  isDefault: boolean;
   accountID: any;
 };
 
@@ -18,9 +19,10 @@ const getSpheresByAccountID = async (accountID: string) => {
 };
 
 const createSphere = async ({
-  name = "Default",
+  name = "",
   description = "",
   SphereThingPeriods = [],
+  isDefault = false,
   accountID,
 }: createProps) => {
   try {
@@ -29,6 +31,7 @@ const createSphere = async ({
         name,
         description,
         SphereThingPeriods,
+        isDefault,
         accountID,
       })
     );

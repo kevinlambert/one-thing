@@ -123,6 +123,7 @@ type EagerSphere = {
   readonly name?: string | null;
   readonly description?: string | null;
   readonly SphereThingPeriods?: (ThingPeriod | null)[] | null;
+  readonly isDefault?: boolean | null;
   readonly accountID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -137,6 +138,7 @@ type LazySphere = {
   readonly name?: string | null;
   readonly description?: string | null;
   readonly SphereThingPeriods: AsyncCollection<ThingPeriod>;
+  readonly isDefault?: boolean | null;
   readonly accountID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

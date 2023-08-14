@@ -1,5 +1,6 @@
 import { DataStore } from "@aws-amplify/datastore";
 import { Account } from "../models";
+import logger from "../logger";
 
 const getUserAccount = async (userID: string) => {
   const result = await DataStore.query(Account, (item) => {
@@ -14,6 +15,8 @@ const createUserAccount = async (userID: string) => {
     let existingAccount = await getUserAccount(userID);
 
     if (!existingAccount) {
+      logger.debug("No account exists. Creating one.");
+
       existingAccount = await DataStore.save(
         new Account({
           firstName: "",

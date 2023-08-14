@@ -2,6 +2,8 @@ import { DataStore } from "@aws-amplify/datastore";
 
 import { createAccount } from "../store/account";
 import { createSphere, getSpheresByAccountID } from "../store/sphere";
+
+import { setCurrentSphere } from "../store/current";
 import { showLoading, hideLoading } from "../store/loading";
 import logger from "../logger";
 import store from "../store/store";
@@ -35,7 +37,7 @@ const DataSync = () => {
 
     if (event === "ready") {
       // hide loading
-      SetupAccount();
+      await SetupApp();
       removeListener();
       store.dispatch(hideLoading());
     }
@@ -44,12 +46,16 @@ const DataSync = () => {
   DataStore.start();
 };
 
+const SetupApp = async () => {
+  await SetupAccount();
+  await SetupSpheres();
+  await SetCurrentSphere();
+};
+
 const SetupAccount = async () => {
   try {
     const user = await Auth.currentAuthenticatedUser();
     await store.dispatch(createAccount(user.username));
-
-    SetupSpheres();
   } catch (e) {
     logger.error(e);
   }
@@ -60,24 +66,35 @@ const SetupSpheres = async () => {
 
   try {
     // gets account spheres
-    const state = await store.getState();
+    let state = await store.getState();
+    const accountID = state.account.id;
 
     await store.dispatch(
       getSpheresByAccountID({
-        accountID: state.account.id,
+        accountID,
       })
     );
 
     // There are no spheres so create a default sphere
-    if (!store.getState().spheres.length) {
+    if (!state.spheres.length) {
+      logger.debug("No sphere exists. Creating one.");
+
       await store.dispatch(
         createSphere({
           name: DEFAULT_SPHERE_NAME,
-          accountID: store.getState().account.id,
+          isDefault: true,
+          accountID,
         })
       );
     }
   } catch (e) {
     logger.error(e);
   }
+};
+
+const SetCurrentSphere = async () => {
+  const state = await store.getState();
+  const defaultSphere = state.spheres.find((item) => item.isDefault);
+  const sphere = defaultSphere || state.spheres[0];
+  await store.dispatch(setCurrentSphere(sphere));
 };
