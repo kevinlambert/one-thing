@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const currentSlice = createSlice({
   name: "current",
-  initialState: [],
+  initialState: { currentSphere: null },
   reducers: {
     setCurrentSphere(state, action) {
       state.currentSphere = action.payload;

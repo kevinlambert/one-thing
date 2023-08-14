@@ -65,10 +65,9 @@ const SetupSpheres = async () => {
   const DEFAULT_SPHERE_NAME = "Personal";
 
   try {
-    // gets account spheres
-    let state = await store.getState();
-    const accountID = state.account.id;
+    const accountID = store.getState().account.id;
 
+    // Get account spheres
     await store.dispatch(
       getSpheresByAccountID({
         accountID,
@@ -76,7 +75,7 @@ const SetupSpheres = async () => {
     );
 
     // There are no spheres so create a default sphere
-    if (!state.spheres.length) {
+    if (!store.getState().spheres.length) {
       logger.debug("No sphere exists. Creating one.");
 
       await store.dispatch(
