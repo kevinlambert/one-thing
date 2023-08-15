@@ -2,9 +2,10 @@ import { DataStore } from "@aws-amplify/datastore";
 
 import { createAccount } from "../store/account";
 import { createSphere, getSpheresByAccountID } from "../store/sphere";
-
 import { setCurrentSphere } from "../store/current";
 import { showLoading, hideLoading } from "../store/loading";
+import { getCurrentThingsBySphere } from "../store/thing";
+
 import logger from "../logger";
 import store from "../store/store";
 import { Hub } from "aws-amplify";
@@ -24,37 +25,50 @@ export const AuthEventHook = () => {
   });
 };
 
-const DataSync = () => {
-  // set loading
-  store.dispatch(showLoading());
+const isUserLoggedIn = async () => {
+  try {
+    const user = await Auth.currentAuthenticatedUser();
+    return true;
+  } catch {
+    return false;
+  }
+};
 
-  const removeListener = Hub.listen("datastore", async (capsule) => {
-    const {
-      payload: { event, data },
-    } = capsule;
+export const DataSync = async () => {
+  if (await isUserLoggedIn()) {
+    // set loading
+    store.dispatch(showLoading());
 
-    logger.debug("DataStore event", event, data);
+    const removeListener = Hub.listen("datastore", async (capsule) => {
+      const {
+        payload: { event, data },
+      } = capsule;
 
-    if (event === "ready") {
-      // hide loading
-      await SetupApp();
-      removeListener();
-      store.dispatch(hideLoading());
-    }
-  });
-  // Start the DataStore, this kicks-off the sync process.
-  DataStore.start();
+      logger.debug("DataStore event", event, data);
+
+      if (event === "ready") {
+        // hide loading
+        await SetupApp();
+        removeListener();
+        store.dispatch(hideLoading());
+      }
+    });
+    // Start the DataStore, this kicks-off the sync process.
+    DataStore.start();
+  }
 };
 
 const SetupApp = async () => {
   await SetupAccount();
   await SetupSpheres();
   await SetCurrentSphere();
+  await GetThings();
 };
 
 const SetupAccount = async () => {
   try {
     const user = await Auth.currentAuthenticatedUser();
+
     await store.dispatch(createAccount(user.username));
   } catch (e) {
     logger.error(e);
@@ -99,7 +113,13 @@ const SetCurrentSphere = async () => {
 };
 
 const GetThings = async () => {
-  // 3month
-  // this week
-  // today
+  const state = await store.getState();
+
+  await store.dispatch(
+    getCurrentThingsBySphere({
+      currentDate: new Date(),
+      sphereID: state.current.currentSphere.id,
+      accountID: state.account.id,
+    })
+  );
 };

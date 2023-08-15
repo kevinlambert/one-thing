@@ -10,27 +10,29 @@ export const getCurrentThingsBySphere = createAsyncThunk(
       accountID,
     });
 
-    const {
-      id,
-      text,
-      periodInterval,
-      periodIncrement,
-      startDate,
-      endDate,
-      sphereID,
-      accountID,
-    } = data;
+    return data.map((item) => {
+      const {
+        id,
+        text,
+        periodInterval,
+        periodIncrement,
+        startDate,
+        endDate,
+        sphereID,
+        accountID,
+      } = item;
 
-    return {
-      id,
-      text,
-      periodInterval,
-      periodIncrement,
-      startDate,
-      endDate,
-      sphereID,
-      accountID,
-    };
+      return {
+        id,
+        text,
+        periodInterval,
+        periodIncrement,
+        startDate,
+        endDate,
+        sphereID,
+        accountID,
+      };
+    });
   }
 );
 
@@ -81,7 +83,6 @@ export const updateThing = createAsyncThunk(
     });
 
     const {
-      id,
       text,
       periodInterval,
       periodIncrement,
@@ -119,20 +120,25 @@ const thingSlice = createSlice({
 
     builder.addCase(updateThing.fulfilled, (state, action) => {
       return state.map((item) => {
-        item.id === action.payload.id ? action.payload : item;
+        return item.id === action.payload.id ? action.payload : item;
       });
     });
   },
 });
 
-export const findThingByIntervalIncrementHelper = (
+export const findThingByIntervalIncrementHelper = ({
   state,
-  interval,
-  increment
-) => {
-  return state.thing.find((item) => {
-    return item.interval === interval && item.increment === increment;
+  periodInterval,
+  periodIncrement,
+}) => {
+  const result = state.thing.find((item) => {
+    return (
+      item.periodInterval === periodInterval &&
+      item.periodIncrement === periodIncrement
+    );
   });
+
+  return result || {};
 };
 
 const { reducer } = thingSlice;

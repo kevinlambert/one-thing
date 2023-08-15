@@ -5,7 +5,7 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 import DefaultLayout from "./components/layouts/Default";
-import { AuthEventHook } from "./util/launchSetup";
+import { AuthEventHook, DataSync } from "./util/launchSetup";
 
 import Loading from "./components/ui/loading/Loading";
 
@@ -70,6 +70,11 @@ const MyRoutes = () => {
 };
 
 AuthEventHook();
+
+window.addEventListener("load", (event) => {
+  console.log("page is fully loaded");
+  DataSync();
+});
 
 const App = () => (
   <>

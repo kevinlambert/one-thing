@@ -1,80 +1,64 @@
-import React, { useEffect } from "react";
-import DefaultLayout from "../layouts/Default";
+import React from "react";
 import FullLayout from "../layouts/Full";
 import ThingPeriod from "../templates/ThingPeriod";
 import ThingPeriodEdit from "../templates/ThingPeriodEdit";
-import { useParams } from "react-router-dom";
-import { getThing, saveThing } from "../../api/thing";
-import { ThingPeriod as ThingPeriodModel } from "../../models";
-import { dateTitle, thingPeriodTitle, AWSDate } from "../../util/format";
-import { periodIntervalType } from "../../api/periodInterval";
+import { useParams, useNavigate } from "react-router-dom";
+import { dateTitle, thingPeriodTitle } from "../../util/format";
 
-// type Props = {
-//   isEdit?: boolean;
-// };
+import store from "../../store/store";
+import {
+  findThingByIntervalIncrementHelper,
+  saveThing,
+  updateThing,
+} from "../../store/thing";
 
-const getData = async (periodInterval, periodIncrement) => {
-  const data = await getThing({
-    focusPeriodID: null,
-    periodInterval,
-    periodIncrement,
-  });
-
-  return data[0];
-};
-
-const saveData = ({
-  content,
-  periodInterval,
-  periodIncrement,
-  startDate,
-  endDate,
-  accountID,
-}) => {
-  saveThing({
-    // focusPeriodID,
-    text: content,
-    periodInterval,
-    periodIncrement,
-    startDate: AWSDate(startDate),
-    endDate: AWSDate(endDate),
-    // sphereID,
-    accountID,
-  });
-};
-
-export default ({ isEdit = false }) => {
+const Thing = ({ isEdit = false }) => {
   let { periodInterval, periodIncrement } = useParams();
+  const navigate = useNavigate();
+
   periodIncrement = parseInt(periodIncrement);
 
-  // const [data, setData] = useState({
-  //   startDate: new Date().toISOString(),
-  //   endDate: new Date().toISOString(),
-  //   text: "",
-  // });
-
-  const data = {};
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const data2 = await getData(periodInterval, periodIncrement);
-      console.log(data2);
-      // setData(data2);
-    };
-    fetchPost();
-  }, []);
+  const thingPeriod = findThingByIntervalIncrementHelper({
+    state: store.getState(),
+    periodInterval,
+    periodIncrement,
+  });
 
   const title = thingPeriodTitle(periodInterval, periodIncrement);
-  const date = dateTitle(data.startDate || "", data.endDate || "");
 
-  const onSaveHandler = (content) => {
-    saveData({
-      content,
-      periodInterval,
-      periodIncrement,
-      ...data,
-      // accountID: storeState.account.id,
-    });
+  const startDate = thingPeriod.startDate || new Date().toISOString();
+  const endDate = thingPeriod.endDate || new Date().toISOString();
+
+  const date = dateTitle({
+    periodInterval,
+    periodIncrement,
+    startDate,
+    endDate,
+  });
+
+  const onSaveHandler = async (text) => {
+    if (thingPeriod.id) {
+      await store.dispatch(
+        updateThing({
+          id: thingPeriod.id,
+          newText: text,
+        })
+      );
+    } else {
+      await store.dispatch(
+        saveThing({
+          text,
+          periodInterval,
+          periodIncrement,
+          startDate,
+          endDate,
+          sphereID: store.getState().current.currentSphere.id,
+          accountID: store.getState().account.id,
+        })
+      );
+    }
+
+    navigate(-1);
   };
 
   return isEdit ? (
@@ -82,7 +66,7 @@ export default ({ isEdit = false }) => {
       <ThingPeriodEdit
         title={title}
         date={date}
-        thingContent={data.text}
+        thingContent={thingPeriod.text}
         onSave={onSaveHandler}
       ></ThingPeriodEdit>
     </FullLayout>
@@ -90,7 +74,9 @@ export default ({ isEdit = false }) => {
     <ThingPeriod
       title={title}
       date={date}
-      thingContent={data.text}
+      thingContent={thingPeriod.text}
     ></ThingPeriod>
   );
 };
+
+export default Thing;

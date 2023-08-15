@@ -1,9 +1,11 @@
 import { DataStore } from "@aws-amplify/datastore";
 import { ThingPeriod } from "../models";
 import { periodIntervalType } from "./periodInterval";
+import { AWSDate } from "../util/format";
+import { Await } from "react-router-dom";
 
 type getThingProps = {
-  currentDate: string;
+  currentDate: Date;
   periodInterval: periodIntervalType;
   periodIncrement: number;
   sphereID: string;
@@ -17,8 +19,8 @@ const getCurrentThingsBySphere = async ({
 }: getThingProps) => {
   return await DataStore.query(ThingPeriod, (thing) =>
     thing.and((thing) => [
-      thing.startDate.ge(currentDate),
-      thing.endDate.le(currentDate),
+      thing.startDate.ge(AWSDate(currentDate)),
+      thing.endDate.le(AWSDate(currentDate)),
       thing.sphereID.eq(sphereID),
       thing.accountID.eq(accountID),
     ])
@@ -44,13 +46,13 @@ const saveThing = async ({
   sphereID,
   accountID,
 }: saveProps) => {
-  await DataStore.save(
+  return await DataStore.save(
     new ThingPeriod({
       text,
       periodInterval,
       periodIncrement,
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
+      startDate: AWSDate(startDate),
+      endDate: AWSDate(endDate),
       sphereID,
       accountID,
     })
@@ -73,11 +75,16 @@ const updateThing = async ({
   const original = await DataStore.query(ThingPeriod, id);
 
   if (original) {
-    const updatedThing = await DataStore.save(
+    return await DataStore.save(
       ThingPeriod.copyOf(original, (updated) => {
         updated.text = newText;
-        newStartDate ? (updated.startDate = newStartDate.toISOString()) : null;
-        newEndDate ? (updated.endDate = newEndDate.toISOString()) : null;
+        if (newStartDate) {
+          updated.startDate = AWSDate(newStartDate);
+        }
+
+        if (newEndDate) {
+          updated.endDate = AWSDate(newEndDate);
+        }
       })
     );
   }

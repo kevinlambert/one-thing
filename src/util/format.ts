@@ -1,11 +1,23 @@
-export const dateTitle = (startDate: string, endDate: string) => {
-  return `${formatDate(new Date(startDate))} to ${formatDate(
-    new Date(endDate)
-  )}`;
+type dateTitleProps = {
+  periodInterval: string;
+  periodIncrement: number;
+  startDate: string;
+  endDate: string;
 };
 
-export const AWSDate = (date: string) => {
-  return date.split("T")[0];
+export const dateTitle = ({
+  periodInterval,
+  periodIncrement,
+  startDate,
+  endDate,
+}: dateTitleProps) => {
+  return periodInterval === "day" && periodIncrement === 0
+    ? formatDate(new Date(startDate))
+    : `${formatDate(new Date(startDate))} to ${formatDate(new Date(endDate))}`;
+};
+
+export const AWSDate = (date: Date) => {
+  return new Date(date).toISOString().split("T")[0];
 };
 
 export const formatDate = (date: Date) => {
