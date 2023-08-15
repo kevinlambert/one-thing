@@ -19,8 +19,8 @@ const getCurrentThingsBySphere = async ({
 }: getThingProps) => {
   return await DataStore.query(ThingPeriod, (thing) =>
     thing.and((thing) => [
-      thing.startDate.ge(AWSDate(currentDate)),
-      thing.endDate.le(AWSDate(currentDate)),
+      thing.startDate.le(AWSDate(currentDate)),
+      thing.endDate.ge(AWSDate(currentDate)),
       thing.sphereID.eq(sphereID),
       thing.accountID.eq(accountID),
     ])

@@ -3,7 +3,12 @@ import FullLayout from "../layouts/Full";
 import ThingPeriod from "../templates/ThingPeriod";
 import ThingPeriodEdit from "../templates/ThingPeriodEdit";
 import { useParams, useNavigate } from "react-router-dom";
-import { dateTitle, thingPeriodTitle } from "../../util/format";
+import {
+  dateTitle,
+  thingPeriodTitle,
+  weekDateRange,
+  monthDateRange,
+} from "../../util/format";
 
 import store from "../../store/store";
 import {
@@ -11,6 +16,33 @@ import {
   saveThing,
   updateThing,
 } from "../../store/thing";
+
+const getStartAndEndDateBasedOnToday = ({
+  periodInterval,
+  periodIncrement,
+}) => {
+  if (periodInterval === "week" && periodIncrement === 0) {
+    const { startOfWeekDate, endOfWeekDate } = weekDateRange(new Date());
+    return {
+      startDate: startOfWeekDate,
+      endDate: endOfWeekDate,
+    };
+  } else if (periodInterval === "month") {
+    const { startOfMonthRange, endOfMonthRange } = monthDateRange(
+      new Date(),
+      periodIncrement
+    );
+    return {
+      startDate: startOfMonthRange,
+      endDate: endOfMonthRange,
+    };
+  } else {
+    return {
+      startDate: new Date(),
+      endDate: new Date(),
+    };
+  }
+};
 
 const Thing = ({ isEdit = false }) => {
   let { periodInterval, periodIncrement } = useParams();
@@ -26,8 +58,14 @@ const Thing = ({ isEdit = false }) => {
 
   const title = thingPeriodTitle(periodInterval, periodIncrement);
 
-  const startDate = thingPeriod.startDate || new Date().toISOString();
-  const endDate = thingPeriod.endDate || new Date().toISOString();
+  const startEndDates = getStartAndEndDateBasedOnToday({
+    periodInterval,
+    periodIncrement,
+  });
+
+  const startDate =
+    thingPeriod.startDate || startEndDates.startDate.toISOString();
+  const endDate = thingPeriod.endDate || startEndDates.endDate.toISOString();
 
   const date = dateTitle({
     periodInterval,
