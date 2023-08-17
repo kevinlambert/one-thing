@@ -5,13 +5,14 @@ import { createSphere, getSpheresByAccountID } from "../store/sphere";
 import { setCurrentSphere } from "../store/current";
 import { showLoading, hideLoading } from "../store/loading";
 import { getCurrentThingsBySphere } from "../store/thing";
+import { runOnboarding } from "../util/onboarding";
 
 import logger from "../logger";
 import store from "../store/store";
 import { Hub } from "aws-amplify";
 import { Auth } from "aws-amplify";
 
-export const AuthEventHook = () => {
+export const authEventHook = () => {
   Hub.listen("auth", (data) => {
     logger.debug(data.payload.event);
 
@@ -49,6 +50,7 @@ export const DataSync = async () => {
       if (event === "ready") {
         // hide loading
         await SetupApp();
+        runOnboarding();
         removeListener();
         store.dispatch(hideLoading());
       }

@@ -4,7 +4,8 @@
 @import "./styles/color";
 
 body {
-  background-color: $neutral-10;
+  background-color: $colors__primary_background;
+  // background-color: $neutral-10;
 }
 
 .app {

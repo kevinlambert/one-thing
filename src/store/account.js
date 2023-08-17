@@ -18,6 +18,19 @@ export const createAccount = createAsyncThunk(
   }
 );
 
+export const updateAccount = createAsyncThunk(
+  "account/updateAccount",
+  async ({ id, firstName, lastName }) => {
+    const account = await userAPI.updateUserAccount({
+      id,
+      firstName,
+      lastName,
+    });
+    const { userID } = account;
+    return { id, firstName, lastName, userID };
+  }
+);
+
 const accountSlice = createSlice({
   name: "account",
   initialState: {},
