@@ -3,7 +3,7 @@ import React from "react";
 import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 import Welcome from "./components/page/onboarding/Welcome";
-import MomentPage from "./components/page/onboarding/Moment";
+import MomentPage from "./components/ui/moment/Moment";
 import DefaultLayout from "./components/layouts/Default";
 import CodeNavigate from "./util/CodeNavigate";
 
@@ -50,14 +50,18 @@ const AnimationLayout = () => {
 type routePathHelperProps = { periodInterval: string; periodIncrement: number };
 
 export const routePathHelper = {
-  defaultMoment: () => {
+  focusPeriodThing: () => {
     const periodInterval = "month";
     const periodIncrement = 3;
 
-    return `/moment/${periodInterval}/${periodIncrement}`;
+    return `/thing/${periodInterval}/${periodIncrement}`;
   },
+
   thing: ({ periodInterval, periodIncrement }: routePathHelperProps) => {
     return `/thing/${periodInterval}/${periodIncrement}`;
+  },
+  thingEdit: ({ periodInterval, periodIncrement }: routePathHelperProps) => {
+    return `/thing/${periodInterval}/${periodIncrement}/edit`;
   },
 };
 

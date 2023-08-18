@@ -5,6 +5,6 @@ type Props = {
   content: string;
 };
 
-export default ({ content }: Props) => (
+export default ({ content = "" }: Props) => (
   <div className="thing-display">{content}</div>
 );

@@ -14,8 +14,6 @@ import store from "../../../store/store";
 import { updateAccount } from "../../../store/account";
 import logger from "../../../logger";
 
-import "./_text.scss";
-
 export default () => {
   const navigate = useNavigate();
   const { tokens } = useTheme();
@@ -45,7 +43,7 @@ export default () => {
         );
         isLoading = false;
 
-        navigate(routePathHelper.defaultMoment());
+        navigate(routePathHelper.focusPeriodThing());
       } catch (e) {
         logger.error(e);
       }
