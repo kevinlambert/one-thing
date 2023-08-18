@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
-import { routePaths } from "../../../AppRoutes";
+import { routePaths, routePathHelper } from "../../../AppRoutes";
 import store from "../../../store/store";
 import { updateAccount } from "../../../store/account";
 import logger from "../../../logger";
@@ -22,31 +22,54 @@ export default () => {
   let isLoading = false;
 
   const [formData, setFormData] = useState({
-    firstName: null,
-    lastName: null,
-    termsAndConditions: null,
+    firstName: "",
+    lastName: "",
+    termsAndConditions: false,
+  });
+
+  const [validationData, setValidationData] = useState({
+    firstName: false,
+    lastName: false,
+    termsAndConditions: false,
   });
 
   const onNextHandler = async () => {
-    try {
-      console.log(formData);
-      await store.dispatch(
-        updateAccount({
-          id: store.getState().account.id,
-          ...formData,
-        })
-      );
-      isLoading = false;
+    if (isValidData()) {
+      try {
+        isLoading = true;
+        await store.dispatch(
+          updateAccount({
+            id: store.getState().account.id,
+            ...formData,
+          })
+        );
+        isLoading = false;
 
-      navigate(routePaths.THING.MOMENT);
-    } catch (e) {
-      logger.error(e);
+        navigate(routePathHelper.defaultMoment());
+      } catch (e) {
+        logger.error(e);
+      }
     }
   };
 
-  function inputChange(e) {
-    setFormData(e.target.value);
-  }
+  const isValidData = () => {
+    const keys = Object.keys(formData);
+
+    const updatedValidationData = { ...validationData };
+
+    keys.forEach((key, index) => {
+      updatedValidationData[key] = !formData[key];
+    });
+    setValidationData(updatedValidationData);
+    return !Object.values(updatedValidationData).includes(true);
+  };
+
+  const inputChangeHandler = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.checked || e.target.value.trim(),
+    });
+  };
 
   return (
     <FullLayout>
@@ -61,18 +84,25 @@ export default () => {
         label="First name"
         errorMessage="Enter your first name"
         value={formData.firstName}
+        hasError={validationData.firstName}
+        onChange={inputChangeHandler}
       ></TextField>
       <TextField
         name="lastName"
         marginBottom={tokens.space.large}
         label="Last name"
-        errorMessage="Enter your first name"
+        errorMessage="Enter your last name"
+        hasError={validationData.lastName}
         value={formData.lastName}
+        onChange={inputChangeHandler}
       ></TextField>
       <CheckboxField
         label="I accept the terms and conditions"
-        name="termandconditions"
+        name="termsAndConditions"
         value={formData.termsAndConditions}
+        errorMessage="You need to agree to the terms and conditions"
+        hasError={validationData.termsAndConditions}
+        onChange={inputChangeHandler}
       />
       <Button
         marginTop={tokens.space.xxxl}

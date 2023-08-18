@@ -42,7 +42,6 @@ type updateProps = {
 
 const updateUserAccount = async ({ id, firstName, lastName }: updateProps) => {
   const original = await DataStore.query(Account, id);
-  console.log(id);
   if (original) {
     return await DataStore.save(
       Account.copyOf(original, (updated) => {
@@ -51,14 +50,6 @@ const updateUserAccount = async ({ id, firstName, lastName }: updateProps) => {
       })
     );
   }
-
-  // const original = await DataStore.query(Post, id);
-
-  // const updatedPost = await DataStore.save(
-  //   Post.copyOf(original, (updated) => {
-  //     updated.title = newTitle;
-  //   })
-  // );
 };
 
 export default {

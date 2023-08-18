@@ -43,6 +43,10 @@ const accountSlice = createSlice({
     builder.addCase(createAccount.fulfilled, (state, action) => {
       return action.payload;
     });
+
+    builder.addCase(updateAccount.fulfilled, (state, action) => {
+      return action.payload;
+    });
   },
 });
 

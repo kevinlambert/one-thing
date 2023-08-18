@@ -47,9 +47,23 @@ const AnimationLayout = () => {
   );
 };
 
+type routePathHelperProps = { periodInterval: string; periodIncrement: number };
+
+export const routePathHelper = {
+  defaultMoment: () => {
+    const periodInterval = "month";
+    const periodIncrement = 3;
+
+    return `/moment/${periodInterval}/${periodIncrement}`;
+  },
+  thing: ({ periodInterval, periodIncrement }: routePathHelperProps) => {
+    return `/thing/${periodInterval}/${periodIncrement}`;
+  },
+};
+
 export const routePaths = {
   THING: {
-    MOMENT: "/moment",
+    MOMENT: "/moment/:periodInterval/:periodIncrement",
     VIEW: "/thing/:periodInterval/:periodIncrement",
     EDIT: "/thing/:periodInterval/:periodIncrement/edit",
   },
