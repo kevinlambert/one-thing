@@ -36,8 +36,6 @@ export default ({ isMenuOpen, onCloseHandler }: Props) => {
           ></IconButton>
         </div>
         <div className="menu-items" onClick={linkClickedHander}>
-          <NavLink to={"/thing/3months"}>Set focus period</NavLink>
-          <NavLink to={"/thing/week"}>Subscription</NavLink>
           <SignOut></SignOut>
         </div>
       </div>
