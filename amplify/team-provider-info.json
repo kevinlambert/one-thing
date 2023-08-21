@@ -1,4 +1,22 @@
 {
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-onething-dev-90849-authRole",
+      "UnauthRoleArn": "arn:aws:iam::574227834093:role/amplify-onething-dev-90849-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::574227834093:role/amplify-onething-dev-90849-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-onething-dev-90849-deployment",
+      "UnauthRoleName": "amplify-onething-dev-90849-unauthRole",
+      "StackName": "amplify-onething-dev-90849",
+      "StackId": "arn:aws:cloudformation:eu-west-2:574227834093:stack/amplify-onething-dev-90849/57b86a80-4002-11ee-9338-0616a4f9f3fe",
+      "AmplifyAppId": "d1imzxqzesur6d"
+    },
+    "categories": {
+      "auth": {
+        "OneThing": {}
+      }
+    }
+  },
   "production": {
     "awscloudformation": {
       "AuthRoleName": "amplify-onething-production-65215-authRole",
