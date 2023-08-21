@@ -1,4 +1,22 @@
 {
+  "production": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-onething-production-65215-authRole",
+      "UnauthRoleArn": "arn:aws:iam::574227834093:role/amplify-onething-production-65215-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::574227834093:role/amplify-onething-production-65215-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-onething-production-65215-deployment",
+      "UnauthRoleName": "amplify-onething-production-65215-unauthRole",
+      "StackName": "amplify-onething-production-65215",
+      "StackId": "arn:aws:cloudformation:eu-west-2:574227834093:stack/amplify-onething-production-65215/43d8a830-3fef-11ee-aff9-02daa29ae6e0",
+      "AmplifyAppId": "d1imzxqzesur6d"
+    },
+    "categories": {
+      "auth": {
+        "OneThing": {}
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-onething-staging-81359-authRole",
