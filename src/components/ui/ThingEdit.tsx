@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./_thing-edit.scss";
-import Button from "./Button";
+// import Button from "./Button";
+import { TextAreaField, Button } from "@aws-amplify/ui-react";
 
 type Props = {
   content: string;
@@ -25,10 +26,10 @@ export default ({ content, onSave, onCancel }: Props) => {
         onChange={onChangeHandler}
       ></textarea>
       <div className="thing-edit-controls">
-        <Button displayType={"secondary"} onClick={onCancel}>
-          Cancel
+        <Button onClick={onCancel}>Cancel</Button>
+        <Button variation="primary" onClick={onSaveHandler}>
+          Save
         </Button>
-        <Button onClick={onSaveHandler}>Save</Button>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 import Welcome from "./components/page/onboarding/Welcome";
+import TourPage from "./components/page/onboarding/tour/tour";
 import MomentPage from "./components/ui/moment/Moment";
 import DefaultLayout from "./components/layouts/Default";
 import CodeNavigate from "./util/CodeNavigate";
@@ -48,6 +49,7 @@ const AnimationLayout = () => {
 };
 
 type routePathHelperProps = { periodInterval: string; periodIncrement: number };
+type routePathHelperTourProps = { step: number };
 
 export const routePathHelper = {
   focusPeriodThing: () => {
@@ -63,6 +65,9 @@ export const routePathHelper = {
   thingEdit: ({ periodInterval, periodIncrement }: routePathHelperProps) => {
     return `/thing/${periodInterval}/${periodIncrement}/edit`;
   },
+  tour: ({ step }: routePathHelperTourProps) => {
+    return `/onboarding/tour/${step}`;
+  },
 };
 
 export const routePaths = {
@@ -74,6 +79,7 @@ export const routePaths = {
   HOME: "/",
   ONBOARDING: {
     WELCOME: "/onboarding/welcome",
+    TOUR: "/onboarding/tour/:step",
   },
 };
 
@@ -97,6 +103,10 @@ const AppRoutes = () => {
           <Route
             path={routePaths.THING.MOMENT}
             element={<MomentPage />}
+          ></Route>
+          <Route
+            path={routePaths.ONBOARDING.TOUR}
+            element={<TourPage />}
           ></Route>
         </Route>
       </Routes>
