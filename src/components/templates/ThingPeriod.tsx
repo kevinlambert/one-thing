@@ -2,7 +2,7 @@ import * as React from "react";
 import ThingHeader from "../ui/ThingHeader";
 import ThingDisplay from "../ui/ThingDisplay";
 import IconButton from "../ui/IconButton";
-import Moment from "../ui/moment/Moment";
+import Moment from "./moment/Moment";
 import { ReactComponent as IconEditCalender } from "@material-design-icons/svg/outlined/edit_calendar.svg";
 import "./_thing-period.scss";
 import { NavLink } from "react-router-dom";

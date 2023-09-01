@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./_thing-edit.scss";
-// import Button from "./Button";
-import { TextAreaField, Button } from "@aws-amplify/ui-react";
+import { TextAreaField, Button, Flex, useTheme } from "@aws-amplify/ui-react";
 
 type Props = {
   content: string;
@@ -10,8 +9,10 @@ type Props = {
 };
 
 export default ({ content, onSave, onCancel }: Props) => {
+  const { tokens } = useTheme();
+
   const onChangeHandler = (e: any) => {
-    content = e.target.value;
+    content = e.currentTarget.value;
   };
 
   const onSaveHandler = () => {
@@ -20,17 +21,21 @@ export default ({ content, onSave, onCancel }: Props) => {
 
   return (
     <div className="thing-edit">
-      <textarea
-        className="thing-edit-text margin-bottom-16"
+      <TextAreaField
+        descriptiveText="Enter your one thing"
+        label="Your ONE Thing"
+        labelHidden={true}
+        name="onething_content"
         defaultValue={content}
         onChange={onChangeHandler}
-      ></textarea>
-      <div className="thing-edit-controls">
+      />
+
+      <Flex justifyContent="space-between" marginTop={tokens.space.small}>
         <Button onClick={onCancel}>Cancel</Button>
         <Button variation="primary" onClick={onSaveHandler}>
           Save
         </Button>
-      </div>
+      </Flex>
     </div>
   );
 };
