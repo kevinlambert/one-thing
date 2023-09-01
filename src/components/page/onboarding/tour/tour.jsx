@@ -58,19 +58,19 @@ const NOT = () => {
       />
       <Text fontSize={tokens.fontSizes.large}>
         Lets's start with what it is NOT:
-        <ul>
-          <li>
-            <OneThingText /> is{" "}
-            <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
-            <span style={{ fontWeight: "bold" }}>task list</span>
-          </li>
-          <li>
-            <OneThingText /> is{" "}
-            <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
-            <span style={{ fontWeight: "bold" }}>todo list</span>
-          </li>
-        </ul>
       </Text>
+      <ul>
+        <li>
+          <OneThingText /> is{" "}
+          <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
+          <span style={{ fontWeight: "bold" }}>task list</span>
+        </li>
+        <li>
+          <OneThingText /> is{" "}
+          <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
+          <span style={{ fontWeight: "bold" }}>todo list</span>
+        </li>
+      </ul>
     </div>
   );
 };
@@ -266,6 +266,39 @@ const Summary = () => {
   );
 };
 
+const CouldBe = () => {
+  const { tokens } = useTheme();
+
+  return (
+    <div>
+      <Text
+        marginTop={tokens.space.medium}
+        fontSize={tokens.fontSizes.xl}
+        fontWeight={tokens.fontWeights.medium}
+      >
+        Your <OneThingText /> could be:
+      </Text>
+      <Divider
+        size="small"
+        marginTop={tokens.space.xs}
+        marginBottom={tokens.space.large}
+      />
+      <ul>
+        <li>relational</li>
+        <li>emotional</li>
+        <li>spiritual</li>
+        <li>physical</li>
+        <li>financial</li>
+        <li>personal</li>
+        <li>vocational</li>
+        <li>social</li>
+        <li>charitable</li>
+      </ul>
+      <Text>Or anything else you can think of.</Text>
+    </div>
+  );
+};
+
 const stepContent = [
   WorldOfDistraction,
   NOT,
@@ -274,6 +307,7 @@ const stepContent = [
   FocusPart,
   HowPart,
   Summary,
+  CouldBe,
 ];
 
 const Footer = () => {

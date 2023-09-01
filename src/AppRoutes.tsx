@@ -4,7 +4,7 @@ import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
 import Welcome from "./components/page/onboarding/Welcome";
 import TourPage from "./components/page/onboarding/tour/tour";
-import MomentPage from "./components/ui/moment/Moment";
+import MomentPage from "./components/templates/moment/Moment";
 import DefaultLayout from "./components/layouts/Default";
 import CodeNavigate from "./util/CodeNavigate";
 

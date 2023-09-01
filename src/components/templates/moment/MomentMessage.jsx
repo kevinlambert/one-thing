@@ -26,19 +26,13 @@ export default () => {
   };
 
   return (
-    <Text fontSize={tokens.fontSizes.large}>
-      Take a moment to think about the
-      <br />
-      <span
-        style={{ fontSize: "28px", fontWeight: "600", fontStyle: "italic" }}
-      >
+    <Text fontSize={tokens.fontSizes.xl}>
+      Take a moment to think about the{" "}
+      <span style={{ fontWeight: "600" }}>
         <OneThingText />
       </span>{" "}
       that you would like to focus on{"  "}
-      <span style={{ fontSize: "32px", fontWeight: "700" }}>
-        {periodText()}
-      </span>
-      .
+      <span style={{ fontWeight: "600" }}>{periodText()}</span>.
     </Text>
   );
 };
