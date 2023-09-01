@@ -87,6 +87,8 @@ type EagerAccount = {
   readonly AccountThingPeriod?: (ThingPeriod | null)[] | null;
   readonly AccountGroupMembers?: (ThingPeriod | null)[] | null;
   readonly userID?: string | null;
+  readonly isTourDone?: boolean | null;
+  readonly termsAndConditionsAccepted?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -104,6 +106,8 @@ type LazyAccount = {
   readonly AccountThingPeriod: AsyncCollection<ThingPeriod>;
   readonly AccountGroupMembers: AsyncCollection<ThingPeriod>;
   readonly userID?: string | null;
+  readonly isTourDone?: boolean | null;
+  readonly termsAndConditionsAccepted?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -159,6 +163,8 @@ type EagerThingPeriod = {
   readonly periodIncrement?: number | null;
   readonly startDate?: string | null;
   readonly endDate?: string | null;
+  readonly isRelated?: boolean | null;
+  readonly isDone?: boolean | null;
   readonly sphereID: string;
   readonly accountID: string;
   readonly createdAt?: string | null;
@@ -176,6 +182,8 @@ type LazyThingPeriod = {
   readonly periodIncrement?: number | null;
   readonly startDate?: string | null;
   readonly endDate?: string | null;
+  readonly isRelated?: boolean | null;
+  readonly isDone?: boolean | null;
   readonly sphereID: string;
   readonly accountID: string;
   readonly createdAt?: string | null;

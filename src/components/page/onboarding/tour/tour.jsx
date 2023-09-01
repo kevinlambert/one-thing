@@ -12,6 +12,9 @@ import {
   useTheme,
 } from "@aws-amplify/ui-react";
 
+import store from "../../../../store/store";
+import { updateAccount } from "../../../../store/account";
+
 const WorldOfDistraction = () => {
   const { tokens } = useTheme();
 
@@ -214,20 +217,50 @@ const HowPart = () => {
           </li>
         </ul>
       </Text>
+    </div>
+  );
+};
+
+const Summary = () => {
+  const { tokens } = useTheme();
+
+  return (
+    <div>
       <Text
         marginTop={tokens.space.medium}
         fontSize={tokens.fontSizes.xl}
         fontWeight={tokens.fontWeights.medium}
       >
-        The summary
+        The Summary
       </Text>
-      <Text fontSize={tokens.fontSizes.large}>
-        It's all about <OneThingText /> today, <OneThingText /> this week, and{" "}
-        <OneThingText /> over the next 3 months.
+      <Divider
+        size="small"
+        marginTop={tokens.space.xs}
+        marginBottom={tokens.space.large}
+      />
+      <Text
+        fontSize={tokens.fontSizes.large}
+        fontWeight={tokens.fontWeights.medium}
+        marginBottom={tokens.space.medium}
+      >
+        It's all about your <OneThingText /> :)
       </Text>
-      <Text fontSize={tokens.fontSizes.large}>
+      <Text
+        fontSize={tokens.fontSizes.large}
+        marginBottom={tokens.space.medium}
+      >
+        - <OneThingText /> today.
+        <br />
+        - <OneThingText /> this week.
+        <br />
+        - <OneThingText /> over the next 3 months.
+      </Text>
+      <Text
+        fontSize={tokens.fontSizes.large}
+        marginBottom={tokens.space.medium}
+      >
         Ideally your today, this week, and 3 month <OneThingText /> should be
-        related to each other.
+        related to each other. That helps give you momentum.
       </Text>
     </div>
   );
@@ -240,6 +273,7 @@ const stepContent = [
   VisionPart,
   FocusPart,
   HowPart,
+  Summary,
 ];
 
 const Footer = () => {
@@ -260,9 +294,10 @@ const Footer = () => {
       navigate(routePathHelper.tour({ step: nextStep }));
     } else {
       // TODO: end of tour
-      alert("End of tour");
+      onSkipHandler();
     }
   };
+
   const onBackHandler = () => {
     isLoading = true;
 
@@ -274,10 +309,20 @@ const Footer = () => {
       navigate(routePathHelper.tour({ step: previousStep }));
     }
   };
+
   const onSkipHandler = () => {
     isLoading = true;
 
-    //TODO: skip
+    const state = store.getState();
+
+    store.dispatch(
+      updateAccount({
+        id: state.account.id,
+        isTourDone: true,
+      })
+    );
+    isLoading = false;
+    navigate(routePathHelper.focusPeriodThing());
   };
 
   return (

@@ -36,17 +36,29 @@ const createUserAccount = async (userID: string) => {
 
 type updateProps = {
   id: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
+  isTourDone?: boolean;
+  termsAndConditionsAccepted?: string;
 };
 
-const updateUserAccount = async ({ id, firstName, lastName }: updateProps) => {
+const updateUserAccount = async ({
+  id,
+  firstName,
+  lastName,
+  isTourDone,
+  termsAndConditionsAccepted,
+}: updateProps) => {
   const original = await DataStore.query(Account, id);
+
   if (original) {
     return await DataStore.save(
       Account.copyOf(original, (updated) => {
-        updated.firstName = firstName;
-        updated.lastName = lastName;
+        if (firstName) updated.firstName = firstName;
+        if (lastName) updated.lastName = lastName;
+        if (isTourDone) updated.isTourDone = isTourDone;
+        if (termsAndConditionsAccepted)
+          updated.termsAndConditionsAccepted = termsAndConditionsAccepted;
       })
     );
   }

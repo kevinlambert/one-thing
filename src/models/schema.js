@@ -284,6 +284,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isTourDone": {
+                    "name": "isTourDone",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "termsAndConditionsAccepted": {
+                    "name": "termsAndConditionsAccepted",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -480,6 +494,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isRelated": {
+                    "name": "isRelated",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isDone": {
+                    "name": "isDone",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "sphereID": {
                     "name": "sphereID",
                     "isArray": false,
@@ -569,5 +597,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "e48a00c608c513f2b7dd4cf2d102ee6b"
+    "version": "0c2b6552cbc9e86f8e070ddec8abf9fa"
 };

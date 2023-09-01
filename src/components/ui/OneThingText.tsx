@@ -1,3 +1,3 @@
 import React from "react";
 
-export default () => <span>ONE Thing</span>;
+export default () => <span style={{ fontWeight: 600 }}>ONE Thing</span>;

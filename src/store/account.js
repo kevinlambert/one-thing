@@ -13,21 +13,51 @@ export const createAccount = createAsyncThunk(
   "account/createAccount",
   async (userId) => {
     const account = await userAPI.createUserAccount(userId);
-    const { id, firstName, lastName, userID } = account;
-    return { id, firstName, lastName, userID };
+    const {
+      id,
+      firstName,
+      lastName,
+      userID,
+      isTourDone,
+      termsAndConditionsAccepted,
+    } = account;
+    return {
+      id,
+      firstName,
+      lastName,
+      userID,
+      isTourDone,
+      termsAndConditionsAccepted,
+    };
   }
 );
 
 export const updateAccount = createAsyncThunk(
   "account/updateAccount",
-  async ({ id, firstName, lastName }) => {
+  /**  @param arg {any} */
+  async ({
+    id,
+    firstName,
+    lastName,
+    isTourDone,
+    termsAndConditionsAccepted,
+  }) => {
     const account = await userAPI.updateUserAccount({
       id,
       firstName,
       lastName,
+      isTourDone,
+      termsAndConditionsAccepted,
     });
     const { userID } = account;
-    return { id, firstName, lastName, userID };
+    return {
+      id,
+      firstName,
+      lastName,
+      userID,
+      isTourDone,
+      termsAndConditionsAccepted,
+    };
   }
 );
 
