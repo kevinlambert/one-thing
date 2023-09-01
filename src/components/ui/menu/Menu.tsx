@@ -1,10 +1,12 @@
-import React, { useEffect, MouseEvent, useContext } from "react";
+import React, { MouseEvent } from "react";
 import "./_menu.scss";
 import { NavLink, useLocation } from "react-router-dom";
+import { routePathHelper } from "../../../AppRoutes";
 import IconButton from "../IconButton";
 import { ReactComponent as IconClose } from "@material-design-icons/svg/outlined/close.svg";
 import ModalBackground from "../modal";
 import SignOut from "./SignOut";
+import { Divider, useTheme } from "@aws-amplify/ui-react";
 
 type Props = {
   isMenuOpen: boolean;
@@ -34,6 +36,10 @@ export default ({ isMenuOpen, onCloseHandler }: Props) => {
             label="Close"
             onClick={onCloseHandler}
           ></IconButton>
+        </div>
+
+        <div className="menu-items">
+          <NavLink to={routePathHelper.tour({ step: 0 })}>View Tour</NavLink>
         </div>
         <div className="menu-items" onClick={linkClickedHander}>
           <SignOut></SignOut>
