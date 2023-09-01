@@ -27,6 +27,7 @@ $height: 64px;
   flex-direction: column;
 
   a {
-    margin-bottom: $space-16;
+    padding: $space-16;
+    border-top: 1px solid $neutral-40;
   }
 }
