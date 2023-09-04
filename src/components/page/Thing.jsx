@@ -3,6 +3,8 @@ import FullLayout from "../layouts/Full";
 import ThingPeriod from "../templates/ThingPeriod";
 import ThingPeriodEdit from "../templates/ThingPeriodEdit";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Flex, useTheme } from "@aws-amplify/ui-react";
 import {
   dateTitle,
   thingPeriodTitle,
@@ -16,6 +18,9 @@ import {
   saveThing,
   updateThing,
 } from "../../store/thing";
+
+import Moment from "../templates/moment/Moment";
+import IGotThis from "../templates/IGotThis/IGotTothis";
 
 const getStartAndEndDateBasedOnToday = ({
   periodInterval,
@@ -80,6 +85,7 @@ const Thing = ({ isEdit = false }) => {
         updateThing({
           id: thingPeriod.id,
           newText: text,
+          isDone: false, // If you update the text then assume the user has not fufilled it
         })
       );
     } else {
@@ -99,6 +105,21 @@ const Thing = ({ isEdit = false }) => {
     navigate(-1);
   };
 
+  const thisThing = useSelector((state) =>
+    state.thing.find((item) => item.id === thingPeriod.id)
+  );
+
+  const onIDidThisToggle = async () => {
+    await store.dispatch(
+      updateThing({
+        id: thingPeriod.id,
+        isDone: !thingPeriod.isDone,
+      })
+    );
+  };
+
+  const { tokens } = useTheme();
+
   return isEdit ? (
     <FullLayout>
       <ThingPeriodEdit
@@ -108,12 +129,22 @@ const Thing = ({ isEdit = false }) => {
         onSave={onSaveHandler}
       ></ThingPeriodEdit>
     </FullLayout>
+  ) : !thingPeriod.text ? (
+    <Moment />
   ) : (
-    <ThingPeriod
-      title={title}
-      date={date}
-      thingContent={thingPeriod.text}
-    ></ThingPeriod>
+    <>
+      <ThingPeriod
+        title={title}
+        date={date}
+        thingContent={thingPeriod.text}
+      ></ThingPeriod>
+      <Flex justifyContent={"flex-end"} marginTop={tokens.space.medium}>
+        <IGotThis
+          isPressed={thisThing.isDone}
+          onPressedHandler={onIDidThisToggle}
+        />
+      </Flex>
+    </>
   );
 };
 
