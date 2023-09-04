@@ -18,6 +18,7 @@ export const getCurrentThingsBySphere = createAsyncThunk(
         periodIncrement,
         startDate,
         endDate,
+        isDone,
         sphereID,
         accountID,
       } = item;
@@ -29,6 +30,7 @@ export const getCurrentThingsBySphere = createAsyncThunk(
         periodIncrement,
         startDate,
         endDate,
+        isDone,
         sphereID,
         accountID,
       };
@@ -44,6 +46,7 @@ export const saveThing = createAsyncThunk(
     periodIncrement,
     startDate,
     endDate,
+    isDone,
     sphereID,
     accountID,
   }) => {
@@ -53,6 +56,7 @@ export const saveThing = createAsyncThunk(
       periodIncrement,
       startDate,
       endDate,
+      isDone,
       sphereID,
       accountID,
     });
@@ -66,6 +70,7 @@ export const saveThing = createAsyncThunk(
       periodIncrement,
       startDate,
       endDate,
+      isDone,
       sphereID,
       accountID,
     };
@@ -74,12 +79,13 @@ export const saveThing = createAsyncThunk(
 
 export const updateThing = createAsyncThunk(
   "thing/updateThing",
-  async ({ id, newText, newStartDate, newEndDate }) => {
+  async ({ id, newText, newStartDate, newEndDate, isDone }) => {
     const data = await thingAPI.updateThing({
       id,
       newText,
       newStartDate,
       newEndDate,
+      isDone,
     });
 
     const {
@@ -99,6 +105,7 @@ export const updateThing = createAsyncThunk(
       periodIncrement,
       startDate,
       endDate,
+      isDone,
       sphereID,
       accountID,
     };

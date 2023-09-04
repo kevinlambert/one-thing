@@ -2,11 +2,9 @@ import * as React from "react";
 import ThingHeader from "../ui/ThingHeader";
 import ThingDisplay from "../ui/ThingDisplay";
 import IconButton from "../ui/IconButton";
-import Moment from "./moment/Moment";
 import { ReactComponent as IconEditCalender } from "@material-design-icons/svg/outlined/edit_calendar.svg";
 import "./_thing-period.scss";
 import { NavLink } from "react-router-dom";
-import { Divider } from "@aws-amplify/ui-react";
 
 type Props = {
   title: string;
@@ -25,7 +23,7 @@ const Edit = () => (
   </NavLink>
 );
 
-const thing = ({ title, date, thingContent = "", isEdit }: Props) => (
+export default ({ title, date, thingContent = "" }: Props) => (
   <>
     <div className="thing-period-header">
       <ThingHeader Title={title} DisplayDate={date}></ThingHeader>
@@ -35,9 +33,3 @@ const thing = ({ title, date, thingContent = "", isEdit }: Props) => (
     <ThingDisplay content={thingContent}></ThingDisplay>
   </>
 );
-
-export default ({ title, date, thingContent, isEdit }: Props) => {
-  const noContent = !thingContent;
-
-  return noContent ? <Moment /> : thing({ title, date, thingContent, isEdit });
-};

@@ -33,6 +33,7 @@ type saveProps = {
   periodIncrement: number;
   startDate: Date;
   endDate: Date;
+  isDone?: boolean;
   sphereID: string;
   accountID: string;
 };
@@ -43,6 +44,7 @@ const saveThing = async ({
   periodIncrement = 0,
   startDate,
   endDate,
+  isDone = false,
   sphereID,
   accountID,
 }: saveProps) => {
@@ -53,6 +55,7 @@ const saveThing = async ({
       periodIncrement,
       startDate: AWSDate(startDate),
       endDate: AWSDate(endDate),
+      isDone,
       sphereID,
       accountID,
     })
@@ -61,9 +64,10 @@ const saveThing = async ({
 
 type updateProps = {
   id: string;
-  newText: string;
+  newText?: string;
   newStartDate?: Date;
   newEndDate?: Date;
+  isDone?: boolean;
 };
 
 const updateThing = async ({
@@ -71,20 +75,17 @@ const updateThing = async ({
   newText,
   newStartDate,
   newEndDate,
+  isDone,
 }: updateProps) => {
   const original = await DataStore.query(ThingPeriod, id);
 
   if (original) {
     return await DataStore.save(
       ThingPeriod.copyOf(original, (updated) => {
-        updated.text = newText;
-        if (newStartDate) {
-          updated.startDate = AWSDate(newStartDate);
-        }
-
-        if (newEndDate) {
-          updated.endDate = AWSDate(newEndDate);
-        }
+        if (newText !== undefined && newText !== null) updated.text = newText;
+        if (newStartDate) updated.startDate = AWSDate(newStartDate);
+        if (newEndDate) updated.endDate = AWSDate(newEndDate);
+        if (isDone) updated.isDone = isDone;
       })
     );
   }
