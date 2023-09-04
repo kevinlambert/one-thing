@@ -12,8 +12,8 @@ import {
   useTheme,
 } from "@aws-amplify/ui-react";
 
-import store from "../../../../store";
-import { updateAccount } from "../../../../store/account";
+import store from "../../../../data/store";
+import { updateAccount } from "../../../../data/store/account";
 
 const WorldOfDistraction = () => {
   const { tokens } = useTheme();

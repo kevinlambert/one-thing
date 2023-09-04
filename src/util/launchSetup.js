@@ -1,14 +1,14 @@
 import { DataStore } from "@aws-amplify/datastore";
 
-import { createAccount } from "../store/account";
-import { createSphere, getSpheresByAccountID } from "../store/sphere";
-import { setCurrentSphere } from "../store/current";
-import { showLoading, hideLoading } from "../store/loading";
-import { getCurrentThingsBySphere } from "../store/thing";
+import { createAccount } from "../data/store/account";
+import { createSphere, getSpheresByAccountID } from "../data/store/sphere";
+import { setCurrentSphere } from "../data/store/current";
+import { showLoading, hideLoading } from "../data/store/loading";
+import { getCurrentThingsBySphere } from "../data/store/thing";
 import { runOnboarding } from "../util/onboarding";
 
 import logger from "../logger";
-import store from "../store";
+import store from "../data/store";
 import { Hub } from "aws-amplify";
 import { Auth } from "aws-amplify";
 

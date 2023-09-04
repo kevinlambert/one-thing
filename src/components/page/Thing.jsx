@@ -12,12 +12,12 @@ import {
   monthDateRange,
 } from "../../util/format";
 
-import store from "../../store";
+import store from "../../data/store";
 import {
   findThingByIntervalIncrementHelper,
   saveThing,
   updateThing,
-} from "../../store/thing";
+} from "../../data/store/thing";
 
 import Moment from "../templates/moment/Moment";
 import IGotThis from "../templates/IGotThis/IGotTothis";

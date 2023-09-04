@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import sphereAPI from "../data/api/sphere";
+import sphereAPI from "../api/sphere";
 
 export const createSphere = createAsyncThunk(
   "sphere/createSphere",

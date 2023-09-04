@@ -1,5 +1,5 @@
-import store from "../store";
-import { navigateTo } from "../store/navigate";
+import store from "../data/store";
+import { navigateTo } from "../data/store/navigate";
 import { routePaths, routePathHelper } from "../AppRoutes";
 
 const latestTermsAndConditionsDate = new Date(); // TODO: get from somewhere

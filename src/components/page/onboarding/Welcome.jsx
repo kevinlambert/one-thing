@@ -10,8 +10,8 @@ import {
 } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import { routePaths, routePathHelper } from "../../../AppRoutes";
-import store from "../../../store";
-import { updateAccount } from "../../../store/account";
+import store from "../../../data/store";
+import { updateAccount } from "../../../data/store/account";
 import logger from "../../../logger";
 
 export default () => {
