@@ -41,6 +41,11 @@ export default ({ isMenuOpen, onCloseHandler }: Props) => {
         <div className="menu-items">
           <NavLink to={routePathHelper.tour({ step: 0 })}>View Tour</NavLink>
         </div>
+        <div className="menu-items">
+          <a href="mailto:onething@lambert.com.co?subject=Feedback on ONE Thing App&body=">
+            Feedback
+          </a>
+        </div>
         <div className="menu-items" onClick={linkClickedHander}>
           <SignOut></SignOut>
         </div>

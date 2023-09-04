@@ -9,7 +9,8 @@ import { Amplify } from "aws-amplify";
 import awsconfig from "./aws-exports";
 import "@aws-amplify/ui-react/styles.css";
 
-import store from "./store/store";
+import store from "./data/store";
+import "./util/viewport";
 import { Provider as ReduxProvider } from "react-redux";
 
 Amplify.configure(awsconfig);
