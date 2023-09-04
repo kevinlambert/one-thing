@@ -1,7 +1,7 @@
 import { DataStore } from "@aws-amplify/datastore";
-import { ThingPeriod } from "../models";
+import { ThingPeriod } from "../../models";
 import { periodIntervalType } from "./periodInterval";
-import { AWSDate } from "../util/format";
+import { AWSDate } from "../../util/format";
 import { Await } from "react-router-dom";
 
 type getThingProps = {

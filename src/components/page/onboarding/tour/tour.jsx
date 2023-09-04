@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@aws-amplify/ui-react";
 
-import store from "../../../../store/store";
+import store from "../../../../store";
 import { updateAccount } from "../../../../store/account";
 
 const WorldOfDistraction = () => {

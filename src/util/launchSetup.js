@@ -8,7 +8,7 @@ import { getCurrentThingsBySphere } from "../store/thing";
 import { runOnboarding } from "../util/onboarding";
 
 import logger from "../logger";
-import store from "../store/store";
+import store from "../store";
 import { Hub } from "aws-amplify";
 import { Auth } from "aws-amplify";
 

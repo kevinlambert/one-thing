@@ -1,6 +1,6 @@
 import { DataStore } from "@aws-amplify/datastore";
-import { Account } from "../models";
-import logger from "../logger";
+import { Account } from "../../models";
+import logger from "../../logger";
 
 const getUserAccount = async (userID: string) => {
   const result = await DataStore.query(Account, (item) => {

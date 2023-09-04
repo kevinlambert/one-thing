@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import thingAPI from "../api/thing";
+import thingAPI from "../data/api/thing";
 
 export const getCurrentThingsBySphere = createAsyncThunk(
   "thing/getCurrentThingsBySphere",

@@ -1,6 +1,6 @@
 import { DataStore } from "@aws-amplify/datastore";
-import { Sphere, ThingPeriod } from "../models";
-import logger from "../logger";
+import { Sphere, ThingPeriod } from "../../models";
+import logger from "../../logger";
 
 type createProps = {
   name?: string;

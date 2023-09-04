@@ -12,7 +12,7 @@ import {
   monthDateRange,
 } from "../../util/format";
 
-import store from "../../store/store";
+import store from "../../store";
 import {
   findThingByIntervalIncrementHelper,
   saveThing,

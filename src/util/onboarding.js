@@ -1,4 +1,4 @@
-import store from "../store/store";
+import store from "../store";
 import { navigateTo } from "../store/navigate";
 import { routePaths, routePathHelper } from "../AppRoutes";
 
