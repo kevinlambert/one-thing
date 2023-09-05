@@ -134,11 +134,11 @@ const thingSlice = createSlice({
 });
 
 export const findThingByIntervalIncrementHelper = ({
-  state,
+  things,
   periodInterval,
   periodIncrement,
 }) => {
-  const result = state.thing.find((item) => {
+  const result = things.find((item) => {
     return (
       item.periodInterval === periodInterval &&
       item.periodIncrement === periodIncrement
