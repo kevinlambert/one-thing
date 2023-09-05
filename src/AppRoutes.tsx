@@ -2,6 +2,7 @@ import React from "react";
 
 import PageHome from "./components/page/Home";
 import PageThing from "./components/page/Thing";
+import EditThingPage from "./components/page/EditThing";
 import Welcome from "./components/page/onboarding/Welcome";
 import TourPage from "./components/page/onboarding/tour/tour";
 import MomentPage from "./components/templates/moment/Moment";
@@ -72,6 +73,7 @@ export const routePathHelper = {
 
 export const routePaths = {
   THING: {
+    REFLECT: "/reflect/:periodInterval/:periodIncrement",
     MOMENT: "/moment/:periodInterval/:periodIncrement",
     VIEW: "/thing/:periodInterval/:periodIncrement",
     EDIT: "/thing/:periodInterval/:periodIncrement/edit",
@@ -88,14 +90,11 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<CodeNavigate />}>
+          <Route path={routePaths.HOME} element={<PageHome />}></Route>
           <Route element={<AnimationLayout />}>
             <Route path={routePaths.THING.VIEW} element={<PageThing />}></Route>
           </Route>
-          <Route
-            path={routePaths.THING.EDIT}
-            element={<PageThing isEdit={true} />}
-          />
-          <Route path={routePaths.HOME} element={<PageHome />}></Route>
+          <Route path={routePaths.THING.EDIT} element={<EditThingPage />} />
           <Route
             path={routePaths.ONBOARDING.WELCOME}
             element={<Welcome />}

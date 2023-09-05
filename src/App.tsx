@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.scss";
+import PwaInstall from "./util/PwaInstall";
+
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import AppRoutes from "./AppRoutes";
 import { authEventHook, DataSync } from "./util/launchSetup";
@@ -11,6 +13,7 @@ addPersitStoreHook();
 
 const App = () => (
   <>
+    <PwaInstall></PwaInstall>
     <Loading />
     <AppRoutes />
   </>
