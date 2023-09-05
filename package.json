@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/ui-react": "^5.1.1",
+    "@khmyznikov/pwa-install": "^0.2.6",
     "@material-design-icons/svg": "^0.14.10",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
