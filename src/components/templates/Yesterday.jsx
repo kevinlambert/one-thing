@@ -15,10 +15,10 @@ export default () => {
 
   let isLoading = false;
 
-  //   const onNextHandler = () => {
-  //     isLoading = true;
-  //     navigate(routePathHelper.thingEdit({ periodInterval, periodIncrement }));
-  //   };
+  const onNextHandler = () => {
+    isLoading = true;
+    // navigate(routePathHelper.thingEdit({ periodInterval, periodIncrement }));
+  };
 
   //   const onImStuckHandler = () => {
   //     isLoading = true;
@@ -26,6 +26,7 @@ export default () => {
   //   };
 
   const firstName = useSelector((state) => state.account.firstName);
+  const thingContent = "";
 
   return (
     <>

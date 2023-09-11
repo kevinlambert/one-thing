@@ -42,23 +42,29 @@ const EditThing = () => {
     endDate,
   });
 
-  const onSaveHandler = async (text) => {
+  const onSaveHandler = async ({ content, relateToSelection }) => {
+    // TODO: save relateToSelection
+
+    console.log(relateToSelection);
+
     if (thingPeriod.id) {
       await store.dispatch(
         updateThing({
           id: thingPeriod.id,
-          newText: text,
+          newText: content,
           isDone: false, // If you update the text then assume the user has not fufilled it
+          isRelatedTo: JSON.stringify(relateToSelection),
         })
       );
     } else {
       await store.dispatch(
         saveThing({
-          text,
+          text: content,
           periodInterval,
           periodIncrement,
           startDate,
           endDate,
+          isRelatedTo: JSON.stringify(relateToSelection),
           sphereID: store.getState().current.currentSphere.id,
           accountID: store.getState().account.id,
         })
@@ -74,6 +80,7 @@ const EditThing = () => {
         title={title}
         date={date}
         thingContent={thingPeriod.text}
+        relatedTo={thingPeriod.isRelatedTo}
         onSave={onSaveHandler}
       ></ThingPeriodEdit>
     </FullLayout>
