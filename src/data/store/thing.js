@@ -10,31 +10,7 @@ export const getCurrentThingsBySphere = createAsyncThunk(
       accountID,
     });
 
-    return data.map((item) => {
-      const {
-        id,
-        text,
-        periodInterval,
-        periodIncrement,
-        startDate,
-        endDate,
-        isDone,
-        sphereID,
-        accountID,
-      } = item;
-
-      return {
-        id,
-        text,
-        periodInterval,
-        periodIncrement,
-        startDate,
-        endDate,
-        isDone,
-        sphereID,
-        accountID,
-      };
-    });
+    return data;
   }
 );
 
@@ -47,6 +23,7 @@ export const saveThing = createAsyncThunk(
     startDate,
     endDate,
     isDone,
+    isRelatedTo,
     sphereID,
     accountID,
   }) => {
@@ -57,58 +34,28 @@ export const saveThing = createAsyncThunk(
       startDate,
       endDate,
       isDone,
+      isRelatedTo,
       sphereID,
       accountID,
     });
 
-    const { id } = data;
-
-    return {
-      id,
-      text,
-      periodInterval,
-      periodIncrement,
-      startDate,
-      endDate,
-      isDone,
-      sphereID,
-      accountID,
-    };
+    return data;
   }
 );
 
 export const updateThing = createAsyncThunk(
   "thing/updateThing",
-  async ({ id, newText, newStartDate, newEndDate, isDone }) => {
+  async ({ id, newText, newStartDate, newEndDate, isDone, isRelatedTo }) => {
     const data = await thingAPI.updateThing({
       id,
       newText,
       newStartDate,
       newEndDate,
       isDone,
+      isRelatedTo,
     });
 
-    const {
-      text,
-      periodInterval,
-      periodIncrement,
-      startDate,
-      endDate,
-      sphereID,
-      accountID,
-    } = data;
-
-    return {
-      id,
-      text,
-      periodInterval,
-      periodIncrement,
-      startDate,
-      endDate,
-      isDone,
-      sphereID,
-      accountID,
-    };
+    return data;
   }
 );
 

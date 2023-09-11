@@ -41,7 +41,7 @@ type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, 
   periodIncrement: Int
   startDate: AWSDate
   endDate: AWSDate
-  isRelated: Boolean
+  isRelatedTo: AWSJSON
   isDone: Boolean
   sphereID: ID! @index(name: "bySphere")
   accountID: ID! @index(name: "byAccount")

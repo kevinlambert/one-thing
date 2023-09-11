@@ -1,6 +1,6 @@
 import * as React from "react";
 import ThingHeader from "../ui/ThingHeader";
-import ThingEdit from "../ui/ThingEdit";
+import ThingEdit from "../ui/editThing/ThingEdit";
 import IconButton from "../ui/IconButton";
 import { ReactComponent as IconMore } from "@material-design-icons/svg/outlined/close.svg";
 import "./_thing-period.scss";
@@ -10,11 +10,11 @@ type Props = {
   title: string;
   date: string;
   thingContent: string | null | undefined;
-  isEdit?: boolean;
+  relatedTo: string;
   onSave: any;
 };
 
-export default ({ title, date, thingContent, onSave }: Props) => {
+export default ({ title, date, thingContent, relatedTo, onSave }: Props) => {
   const navigate = useNavigate();
 
   const cancelHandler = () => {
@@ -29,6 +29,7 @@ export default ({ title, date, thingContent, onSave }: Props) => {
       <div className="margin-bottom-16"></div>
       <ThingEdit
         content={thingContent || ""}
+        relatedTo={relatedTo}
         onSave={onSave}
         onCancel={cancelHandler}
       ></ThingEdit>

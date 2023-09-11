@@ -34,6 +34,7 @@ type saveProps = {
   startDate: Date;
   endDate: Date;
   isDone?: boolean;
+  isRelatedTo?: string;
   sphereID: string;
   accountID: string;
 };
@@ -45,6 +46,7 @@ const saveThing = async ({
   startDate,
   endDate,
   isDone = false,
+  isRelatedTo = JSON.stringify([]),
   sphereID,
   accountID,
 }: saveProps) => {
@@ -56,6 +58,7 @@ const saveThing = async ({
       startDate: AWSDate(startDate),
       endDate: AWSDate(endDate),
       isDone,
+      isRelatedTo,
       sphereID,
       accountID,
     })
@@ -68,6 +71,7 @@ type updateProps = {
   newStartDate?: Date;
   newEndDate?: Date;
   isDone?: boolean;
+  isRelatedTo?: string;
 };
 
 const updateThing = async ({
@@ -76,9 +80,9 @@ const updateThing = async ({
   newStartDate,
   newEndDate,
   isDone,
+  isRelatedTo,
 }: updateProps) => {
   const original = await DataStore.query(ThingPeriod, id);
-
   if (original) {
     return await DataStore.save(
       ThingPeriod.copyOf(original, (updated) => {
@@ -86,6 +90,7 @@ const updateThing = async ({
         if (newStartDate) updated.startDate = AWSDate(newStartDate);
         if (newEndDate) updated.endDate = AWSDate(newEndDate);
         if (isDone) updated.isDone = isDone;
+        if (isRelatedTo) updated.isRelatedTo = isRelatedTo;
       })
     );
   }

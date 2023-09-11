@@ -494,10 +494,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "isRelated": {
-                    "name": "isRelated",
+                "isRelatedTo": {
+                    "name": "isRelatedTo",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -597,5 +597,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "0c2b6552cbc9e86f8e070ddec8abf9fa"
+    "version": "d445e846fe3ae1f5746bc72f5f061d5d"
 };
