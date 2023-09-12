@@ -43,10 +43,6 @@ const EditThing = () => {
   });
 
   const onSaveHandler = async ({ content, relateToSelection }) => {
-    // TODO: save relateToSelection
-
-    console.log(relateToSelection);
-
     if (thingPeriod.id) {
       await store.dispatch(
         updateThing({

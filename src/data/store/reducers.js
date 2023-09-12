@@ -5,6 +5,7 @@ import navigateReducer from "./navigate";
 import sphereReducer from "./sphere";
 import currentReducer from "./current";
 import thingReducer from "./thing";
+import previousThingReducer from "./previousThing";
 
 export default combineReducers({
   account: accountReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   spheres: sphereReducer,
   current: currentReducer,
   thing: thingReducer,
+  previousThing: previousThingReducer,
 });
