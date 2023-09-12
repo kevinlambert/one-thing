@@ -1,4 +1,4 @@
-import { DataStore } from "@aws-amplify/datastore";
+import { DataStore, SortDirection } from "@aws-amplify/datastore";
 import { ThingPeriod } from "../../models";
 import { periodIntervalType } from "./periodInterval";
 import { AWSDate } from "../../util/format";
@@ -6,8 +6,6 @@ import { Await } from "react-router-dom";
 
 type getThingProps = {
   currentDate: Date;
-  periodInterval: periodIntervalType;
-  periodIncrement: number;
   sphereID: string;
   accountID: string;
 };
@@ -24,6 +22,37 @@ const getCurrentThingsBySphere = async ({
       thing.sphereID.eq(sphereID),
       thing.accountID.eq(accountID),
     ])
+  );
+};
+
+type previousThingProps = {
+  startDate?: Date;
+  periodInterval: periodIntervalType;
+  sphereID: string;
+};
+
+const getPreviousThing = async ({
+  startDate,
+  periodInterval,
+  sphereID,
+}: previousThingProps) => {
+  return await DataStore.query(
+    ThingPeriod,
+    (thing) =>
+      thing.and((thing) => {
+        const parameters = [
+          thing.sphereID.eq(sphereID),
+          thing.periodInterval.eq(periodInterval),
+        ];
+        startDate && parameters.push(thing.endDate.ge(AWSDate(startDate)));
+
+        return parameters;
+      }),
+    {
+      page: 0,
+      limit: 1,
+      sort: (s) => s.endDate(SortDirection.DESCENDING),
+    }
   );
 };
 
@@ -89,7 +118,7 @@ const updateThing = async ({
         if (newText !== undefined && newText !== null) updated.text = newText;
         if (newStartDate) updated.startDate = AWSDate(newStartDate);
         if (newEndDate) updated.endDate = AWSDate(newEndDate);
-        if (isDone) updated.isDone = isDone;
+        if ((isDone !== undefined && isDone) !== null) updated.isDone = isDone;
         if (isRelatedTo) updated.isRelatedTo = isRelatedTo;
       })
     );
@@ -97,6 +126,7 @@ const updateThing = async ({
 };
 
 export default {
+  getPreviousThing,
   getCurrentThingsBySphere,
   saveThing,
   updateThing,

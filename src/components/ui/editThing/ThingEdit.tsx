@@ -22,14 +22,16 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
   let { periodInterval } = useParams();
   const [showRelatedError, setShowRelatedError] = useState<boolean>(false);
   const [relateToSelection, setRelateToSelection] = useState<string[]>([]);
+  const [contentText, setContentText] = useState<string>(content || "");
 
   const onChangeHandler = (e: any) => {
-    content = e.currentTarget.value;
+    setContentText(e.currentTarget.value);
   };
 
   const onSaveHandler = () => {
     if (relateToSelection.length) {
-      onSave({ content, relateToSelection });
+      console.log(contentText);
+      onSave({ content: contentText, relateToSelection });
       // at least one option was selected
     } else {
       // prompt  error message for related
@@ -52,7 +54,7 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
         label="Your ONE Thing"
         labelHidden={true}
         name="onething_content"
-        defaultValue={content}
+        defaultValue={contentText}
         onChange={onChangeHandler}
       />
       <Related

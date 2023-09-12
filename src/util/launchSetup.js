@@ -5,6 +5,7 @@ import { createSphere, getSpheresByAccountID } from "../data/store/sphere";
 import { setCurrentSphere } from "../data/store/current";
 import { showLoading, hideLoading } from "../data/store/loading";
 import { getCurrentThingsBySphere } from "../data/store/thing";
+import { getPreviousThing } from "../data/store/previousThing";
 import { runOnboarding } from "../util/onboarding";
 
 import logger from "../logger";
@@ -124,4 +125,18 @@ const GetThings = async () => {
       accountID: state.account.id,
     })
   );
+
+  // get previous things
+  const things = await store.getState().thing;
+
+  ["month", "week", "day"].forEach(async (period) => {
+    if (!things.find((item) => item.periodInterval === period)) {
+      await store.dispatch(
+        getPreviousThing({
+          periodInterval: period,
+          sphereID: state.current.currentSphere.id,
+        })
+      );
+    }
+  });
 };

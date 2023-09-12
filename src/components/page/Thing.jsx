@@ -4,15 +4,16 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Flex, useTheme } from "@aws-amplify/ui-react";
 import { formatDateTitle } from "./thingHelpers";
-import { thingPeriodTitle } from "../../util/format";
+import { thingPeriodTitle, AWSDate } from "../../util/format";
 
 import store from "../../data/store";
 import { updateThing } from "../../data/store/thing";
 
 import Moment from "../templates/moment/Moment";
+import Yesterday from "../templates/Yesterday";
 import IGotThis from "../templates/IGotThis/IGotTothis";
 
-const Thing = ({ isEdit = false }) => {
+const Thing = () => {
   const { tokens } = useTheme();
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
@@ -43,23 +44,37 @@ const Thing = ({ isEdit = false }) => {
     );
   };
 
-  return !thingPeriod.text ? (
-    <Moment />
-  ) : (
-    <>
-      <ThingPeriod
-        title={title}
-        date={date}
-        thingContent={thingPeriod.text}
-      ></ThingPeriod>
-      <Flex justifyContent={"flex-end"} marginTop={tokens.space.medium}>
-        <IGotThis
-          isPressed={thingPeriod.isDone}
-          onPressedHandler={onIDidThisToggle}
-        />
-      </Flex>
-    </>
-  );
+  if (!thingPeriod.text) {
+    const { previousThing } = store.getState();
+
+    if (
+      previousThing[periodInterval] &&
+      !previousThing[periodInterval][periodIncrement].isDone &&
+      AWSDate(
+        new Date(previousThing[periodInterval][periodIncrement].updatedAt)
+      ) < AWSDate(new Date())
+    ) {
+      return <Yesterday />;
+    } else {
+      return <Moment />;
+    }
+  } else {
+    return (
+      <>
+        <ThingPeriod
+          title={title}
+          date={date}
+          thingContent={thingPeriod.text}
+        ></ThingPeriod>
+        <Flex justifyContent={"flex-end"} marginTop={tokens.space.medium}>
+          <IGotThis
+            isPressed={thingPeriod.isDone}
+            onPressedHandler={onIDidThisToggle}
+          />
+        </Flex>
+      </>
+    );
+  }
 };
 
 export default Thing;
