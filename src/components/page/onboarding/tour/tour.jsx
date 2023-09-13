@@ -9,6 +9,7 @@ import {
   Button,
   Heading,
   Text,
+  View,
   useTheme,
 } from "@aws-amplify/ui-react";
 
@@ -49,28 +50,27 @@ const NOT = () => {
         fontSize={tokens.fontSizes.xl}
         fontWeight={tokens.fontWeights.medium}
       >
-        What is <OneThingText />?
+        <OneThingText /> is NOT?
       </Text>
       <Divider
         size="small"
         marginTop={tokens.space.xs}
         marginBottom={tokens.space.large}
       />
-      <Text fontSize={tokens.fontSizes.large}>
-        Lets's start with what it is NOT:
-      </Text>
-      <ul>
-        <li>
-          <OneThingText /> is{" "}
-          <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
-          <span style={{ fontWeight: "bold" }}>task list</span>
-        </li>
-        <li>
-          <OneThingText /> is{" "}
-          <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
-          <span style={{ fontWeight: "bold" }}>todo list</span>
-        </li>
-      </ul>
+      <View fontSize={tokens.fontSizes.large}>
+        <ul>
+          <li>
+            <OneThingText /> is{" "}
+            <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
+            <span style={{ fontWeight: "bold" }}>task list</span>
+          </li>
+          <li>
+            <OneThingText /> is{" "}
+            <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
+            <span style={{ fontWeight: "bold" }}>todo list</span>
+          </li>
+        </ul>
+      </View>
     </div>
   );
 };
@@ -283,31 +283,33 @@ const CouldBe = () => {
         marginTop={tokens.space.xs}
         marginBottom={tokens.space.large}
       />
-      <ul>
-        <li>relational</li>
-        <li>emotional</li>
-        <li>spiritual</li>
-        <li>physical</li>
-        <li>financial</li>
-        <li>personal</li>
-        <li>vocational</li>
-        <li>social</li>
-        <li>charitable</li>
-      </ul>
-      <Text>Or anything else you can think of.</Text>
+      <View fontSize={tokens.fontSizes.large}>
+        <ul>
+          <li>relational</li>
+          <li>emotional</li>
+          <li>spiritual</li>
+          <li>physical</li>
+          <li>financial</li>
+          <li>personal</li>
+          <li>vocational</li>
+          <li>social</li>
+          <li>charitable</li>
+        </ul>
+        <Text>Or anything else you can think of...</Text>
+      </View>
     </div>
   );
 };
 
 const stepContent = [
   WorldOfDistraction,
+  Summary,
+  CouldBe,
   NOT,
   IS,
   VisionPart,
   FocusPart,
   HowPart,
-  Summary,
-  CouldBe,
 ];
 
 const Footer = () => {
