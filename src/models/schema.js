@@ -504,7 +504,7 @@ export const schema = {
                 "isDone": {
                     "name": "isDone",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -597,5 +597,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "d445e846fe3ae1f5746bc72f5f061d5d"
+    "version": "d7ff6540827bad2ca337bf50bf1290fe"
 };

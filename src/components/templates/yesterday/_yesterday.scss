@@ -1,0 +1,10 @@
+@import "../../../styles/color";
+@import "../../../styles/spacing";
+
+div.yesterday-thing-display {
+  border: 1px solid $neutral-40;
+  padding: $space-16;
+  border-radius: $space-16;
+  color: $color__neutral-90;
+  background-color: $neutral-10;
+}

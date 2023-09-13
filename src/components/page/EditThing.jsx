@@ -48,7 +48,7 @@ const EditThing = () => {
         updateThing({
           id: thingPeriod.id,
           newText: content,
-          isDone: false, // If you update the text then assume the user has not fufilled it
+          isDone: 0, // If you update the text then assume the user has not fufilled it
           isRelatedTo: JSON.stringify(relateToSelection),
         })
       );
