@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import thingAPI from "../api/thing";
+import { removeNonSerializableValues } from "./util";
 
 export const getCurrentThingsBySphere = createAsyncThunk(
   "thing/getCurrentThingsBySphere",
@@ -10,7 +11,7 @@ export const getCurrentThingsBySphere = createAsyncThunk(
       accountID,
     });
 
-    return data;
+    return removeNonSerializableValues(data);
   }
 );
 
@@ -39,7 +40,7 @@ export const saveThing = createAsyncThunk(
       accountID,
     });
 
-    return data;
+    return removeNonSerializableValues(data);
   }
 );
 
@@ -55,7 +56,7 @@ export const updateThing = createAsyncThunk(
       isRelatedTo,
     });
 
-    return data;
+    return removeNonSerializableValues(data);
   }
 );
 

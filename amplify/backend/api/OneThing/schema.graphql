@@ -42,7 +42,7 @@ type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, 
   startDate: AWSDate
   endDate: AWSDate
   isRelatedTo: AWSJSON
-  isDone: Boolean
+  isDone: Int
   sphereID: ID! @index(name: "bySphere")
   accountID: ID! @index(name: "byAccount")
 }

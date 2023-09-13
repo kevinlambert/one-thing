@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import OneThingText from "../ui/OneThingText";
-import { updateThing } from "../../data/store/previousThing";
-import store from "../../data/store";
+import OneThingText from "../../ui/OneThingText";
+import { updateThing } from "../../../data/store/previousThing";
+import store from "../../../data/store";
+import "./_yesterday.scss";
 
 import {
   Button,
@@ -21,7 +22,7 @@ export default () => {
   periodIncrement = parseInt(periodIncrement);
   let isLoading = false;
 
-  const [isDone, setIsDone] = useState(null);
+  const [isDone, setIsDone] = useState(-1);
   const [validationError, setValidationError] = useState(false);
 
   const firstName = useSelector((state) => state.account.firstName);
@@ -31,7 +32,7 @@ export default () => {
 
   const onNextHandler = async () => {
     isLoading = true;
-    if (isDone !== null) {
+    if (isDone !== -1) {
       await store.dispatch(
         updateThing({
           id: previousThing.id,
@@ -44,7 +45,7 @@ export default () => {
   };
 
   const onChangeHandler = (e) => {
-    setIsDone(e.target.value === "true");
+    setIsDone(parseInt(e.target.value));
     setValidationError(false);
   };
 
@@ -55,8 +56,15 @@ export default () => {
       </Text>
       <Divider size="small" marginBottom={tokens.space.medium} />
       <Text fontSize={tokens.fontSizes.xl} marginBottom={tokens.space.medium}>
-        Your previous <OneThingText /> was: {previousThing.text}
+        Your previous <OneThingText /> was:
       </Text>
+      <Flex
+        className="yesterday-thing-display"
+        fontSize={tokens.fontSizes.large}
+        marginBottom={tokens.space.medium}
+      >
+        {previousThing.text}
+      </Flex>
 
       <Text fontSize={tokens.fontSizes.xl} marginBottom={tokens.space.medium}>
         Where you able to get to this?
@@ -69,8 +77,8 @@ export default () => {
         errorMessage="This is a required field. Please select an option."
         hasError={validationError}
       >
-        <Radio value="true">Yes</Radio>
-        <Radio value="false">No</Radio>
+        <Radio value="1">Yes</Radio>
+        <Radio value="0">No</Radio>
       </RadioGroupField>
       <Flex justifyContent="flex-end" marginTop={tokens.space.medium}>
         <Button

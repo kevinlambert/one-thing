@@ -164,7 +164,7 @@ type EagerThingPeriod = {
   readonly startDate?: string | null;
   readonly endDate?: string | null;
   readonly isRelatedTo?: string | null;
-  readonly isDone?: boolean | null;
+  readonly isDone?: number | null;
   readonly sphereID: string;
   readonly accountID: string;
   readonly createdAt?: string | null;
@@ -183,7 +183,7 @@ type LazyThingPeriod = {
   readonly startDate?: string | null;
   readonly endDate?: string | null;
   readonly isRelatedTo?: string | null;
-  readonly isDone?: boolean | null;
+  readonly isDone?: number | null;
   readonly sphereID: string;
   readonly accountID: string;
   readonly createdAt?: string | null;

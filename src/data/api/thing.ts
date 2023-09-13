@@ -62,7 +62,7 @@ type saveProps = {
   periodIncrement: number;
   startDate: Date;
   endDate: Date;
-  isDone?: boolean;
+  isDone?: number;
   isRelatedTo?: string;
   sphereID: string;
   accountID: string;
@@ -74,7 +74,7 @@ const saveThing = async ({
   periodIncrement = 0,
   startDate,
   endDate,
-  isDone = false,
+  isDone = -1,
   isRelatedTo = JSON.stringify([]),
   sphereID,
   accountID,
@@ -99,7 +99,7 @@ type updateProps = {
   newText?: string;
   newStartDate?: Date;
   newEndDate?: Date;
-  isDone?: boolean;
+  isDone?: number;
   isRelatedTo?: string;
 };
 
@@ -118,7 +118,7 @@ const updateThing = async ({
         if (newText !== undefined && newText !== null) updated.text = newText;
         if (newStartDate) updated.startDate = AWSDate(newStartDate);
         if (newEndDate) updated.endDate = AWSDate(newEndDate);
-        if ((isDone !== undefined && isDone) !== null) updated.isDone = isDone;
+        if (isDone !== undefined && isDone !== null) updated.isDone = isDone;
         if (isRelatedTo) updated.isRelatedTo = isRelatedTo;
       })
     );

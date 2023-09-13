@@ -10,7 +10,7 @@ import store from "../../data/store";
 import { updateThing } from "../../data/store/thing";
 
 import Moment from "../templates/moment/Moment";
-import Yesterday from "../templates/Yesterday";
+import Yesterday from "../templates/yesterday/Yesterday";
 import IGotThis from "../templates/IGotThis/IGotTothis";
 
 const Thing = () => {
@@ -39,7 +39,7 @@ const Thing = () => {
     await store.dispatch(
       updateThing({
         id: thingPeriod.id,
-        isDone: !thingPeriod.isDone,
+        isDone: thingPeriod.isDone === 1 ? 0 : 1,
       })
     );
   };
@@ -49,10 +49,7 @@ const Thing = () => {
 
     if (
       previousThing[periodInterval] &&
-      !previousThing[periodInterval][periodIncrement].isDone &&
-      AWSDate(
-        new Date(previousThing[periodInterval][periodIncrement].updatedAt)
-      ) < AWSDate(new Date())
+      previousThing[periodInterval][periodIncrement].isDone === -1
     ) {
       return <Yesterday />;
     } else {
@@ -68,7 +65,7 @@ const Thing = () => {
         ></ThingPeriod>
         <Flex justifyContent={"flex-end"} marginTop={tokens.space.medium}>
           <IGotThis
-            isPressed={thingPeriod.isDone}
+            isPressed={thingPeriod.isDone === 1}
             onPressedHandler={onIDidThisToggle}
           />
         </Flex>

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import thingAPI from "../api/thing";
+import { removeNonSerializableValues } from "./util";
 
 export const getPreviousThing = createAsyncThunk(
   "previousThing/getPreviousThing",
@@ -10,7 +11,7 @@ export const getPreviousThing = createAsyncThunk(
       sphereID,
     });
 
-    return data;
+    return removeNonSerializableValues(data);
   }
 );
 
@@ -22,7 +23,7 @@ export const updateThing = createAsyncThunk(
       isDone,
     });
 
-    return data;
+    return removeNonSerializableValues(data);
   }
 );
 
