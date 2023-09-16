@@ -5,17 +5,13 @@
     "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "onethi9b2a15ea",
     "userPoolName": "OneThing",
-    "autoVerifiedAttributes": [
-      "email"
-    ],
+    "autoVerifiedAttributes": ["email"],
     "mfaConfiguration": "OFF",
-    "mfaTypes": [
-      "SMS Text Message"
-    ],
-    "smsAuthenticationMessage": "Your authentication code is {####}",
-    "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Verification code: {####}",
-    "emailVerificationMessage": "Verification code: {####}",
+    "mfaTypes": ["SMS Text Message"],
+    "smsAuthenticationMessage": "Your ONE Thing verification code: {####}",
+    "smsVerificationMessage": "Your ONE Thing verification code: {####}",
+    "emailVerificationSubject": "ONE Thing Verification code",
+    "emailVerificationMessage": "Your ONE Thing verification code: {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -36,9 +32,7 @@
     "resourceName": "OneThing",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
-    "usernameAttributes": [
-      "email"
-    ],
+    "usernameAttributes": ["email"],
     "useDefault": "manual",
     "userPoolGroups": false,
     "userPoolGroupList": [],
