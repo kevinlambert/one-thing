@@ -12,7 +12,8 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh; /* fallback for Js load */
-  height: var(--doc-height);
+  height: var(--doc-height); // fallback if dvh not used
+  height: 100dvh;
   min-height: auto !important; //override amplify css
 }
 
