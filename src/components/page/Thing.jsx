@@ -18,14 +18,14 @@ const Thing = () => {
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
 
-  const thingPeriod = useSelector(
-    (state) =>
-      state.thing.find(
+  const thingPeriod =
+    store
+      .getState()
+      .thing.find(
         (item) =>
           item.periodInterval === periodInterval &&
           item.periodIncrement === periodIncrement
-      ) || {}
-  );
+      ) || {};
 
   const title = thingPeriodTitle(periodInterval, periodIncrement);
 
