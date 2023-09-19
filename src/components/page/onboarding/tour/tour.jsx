@@ -94,9 +94,11 @@ const IS = () => {
       />
       <Text fontSize={tokens.fontSizes.large}>
         <ul>
-          <li>part VISION - where do I want to go</li>
-          <li>part HOW - how do I get there</li>
-          <li>part FOCUS - avoid distractions; what can i do today</li>
+          <li>part VISION - Where do I want to go?</li>
+          <li>part HOW - How do I get there?</li>
+          <li>
+            part FOCUS - Steer clear of distractions with "what can I do today?"
+          </li>
         </ul>
       </Text>
     </div>
@@ -128,7 +130,7 @@ const VisionPart = () => {
       </Text>
       <Text fontSize={tokens.fontSizes.large}>
         <ul>
-          <li>Where do I want to be in 3 months time</li>
+          <li>Where do I want to be in 3 months time?</li>
           <li>
             3 months is long enough in the future to get momentum and close
             enough to give a sense of urgency.
