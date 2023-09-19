@@ -79,7 +79,7 @@ export const routePaths = {
     VIEW: "/thing/:periodInterval/:periodIncrement",
     EDIT: "/thing/:periodInterval/:periodIncrement/edit",
   },
-  HOME: "/thing/month/3",
+  HOME: "/",
   TERMS_AND_CONDITIONS: "/termsandconditions",
   ONBOARDING: {
     WELCOME: "/onboarding/welcome",
