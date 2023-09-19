@@ -18,6 +18,7 @@ const Thing = () => {
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
 
+  // possibly use https://redux.js.org/usage/deriving-data-selectors
   const thingPeriod =
     store
       .getState()

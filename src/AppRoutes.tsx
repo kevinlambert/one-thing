@@ -6,6 +6,7 @@ import EditThingPage from "./components/page/EditThing";
 import Welcome from "./components/page/onboarding/Welcome";
 import TourPage from "./components/page/onboarding/tour/tour";
 import MomentPage from "./components/templates/moment/Moment";
+import TermsAndConditionsPage from "./components/page/legal/TermsAndConditions";
 import DefaultLayout from "./components/layouts/Default";
 import CodeNavigate from "./util/CodeNavigate";
 
@@ -78,7 +79,8 @@ export const routePaths = {
     VIEW: "/thing/:periodInterval/:periodIncrement",
     EDIT: "/thing/:periodInterval/:periodIncrement/edit",
   },
-  HOME: "/",
+  HOME: "/thing/month/3",
+  TERMS_AND_CONDITIONS: "/termsandconditions",
   ONBOARDING: {
     WELCOME: "/onboarding/welcome",
     TOUR: "/onboarding/tour/:step",
@@ -91,6 +93,10 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<CodeNavigate />}>
           <Route path={routePaths.HOME} element={<PageHome />}></Route>
+          <Route
+            path={routePaths.TERMS_AND_CONDITIONS}
+            element={<TermsAndConditionsPage />}
+          ></Route>
           <Route element={<AnimationLayout />}>
             <Route path={routePaths.THING.VIEW} element={<PageThing />}></Route>
           </Route>
