@@ -29,7 +29,7 @@ export default () => {
   return (
     <>
       <Text fontSize={tokens.fontSizes.xxl} marginBottom={tokens.space.medium}>
-        Hey, {firstName}
+        Hey {firstName},
       </Text>
       <Divider size="small" marginBottom={tokens.space.medium} />
       <MomentMessage />
@@ -50,9 +50,9 @@ export default () => {
           variation="primary"
           loadingText="Loading..."
           onClick={onNextHandler}
-          ariaLabel="Next"
+          ariaLabel="I'm ready"
         >
-          Next
+          I'm ready
         </Button>
       </Flex>
     </>

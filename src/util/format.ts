@@ -17,7 +17,7 @@ export const dateTitle = ({
 };
 
 export const weekDateRange = (date: Date) => {
-  const startOfWeek = 0; //sunday
+  const startOfWeek = 1; //Monday
   // const endOfWeek = 6; //saturday
   const numberOfDaysInWeek = 6; // 0 to 6
 
@@ -38,17 +38,36 @@ export const weekDateRange = (date: Date) => {
   };
 };
 
+// old one.  3months from begining of month
+// export const monthDateRange = (date: Date, periodIncrement: number) => {
+//   const startOfMonth = 1;
+
+//   const currentDate = new Date(date);
+
+//   const startOfMonthRange = new Date(currentDate);
+//   startOfMonthRange.setDate(startOfMonth);
+
+//   const endOfMonthRange = new Date(currentDate);
+//   endOfMonthRange.setMonth(endOfMonthRange.getMonth() + periodIncrement);
+//   endOfMonthRange.setDate(0); // 0 will get the last day of the previous month
+
+//   return {
+//     startOfMonthRange,
+//     endOfMonthRange,
+//   };
+// };
+
+// just adds 3 months to current date
 export const monthDateRange = (date: Date, periodIncrement: number) => {
   const startOfMonth = 1;
 
   const currentDate = new Date(date);
 
   const startOfMonthRange = new Date(currentDate);
-  startOfMonthRange.setDate(startOfMonth);
 
   const endOfMonthRange = new Date(currentDate);
   endOfMonthRange.setMonth(endOfMonthRange.getMonth() + periodIncrement);
-  endOfMonthRange.setDate(0); // 0 will get the last day of the previous month
+  endOfMonthRange.setDate(endOfMonthRange.getDate() - 1);
 
   return {
     startOfMonthRange,

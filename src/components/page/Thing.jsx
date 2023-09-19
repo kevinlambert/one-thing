@@ -18,14 +18,15 @@ const Thing = () => {
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
 
-  const thingPeriod = useSelector(
-    (state) =>
-      state.thing.find(
+  // possibly use https://redux.js.org/usage/deriving-data-selectors
+  const thingPeriod =
+    store
+      .getState()
+      .thing.find(
         (item) =>
           item.periodInterval === periodInterval &&
           item.periodIncrement === periodIncrement
-      ) || {}
-  );
+      ) || {};
 
   const title = thingPeriodTitle(periodInterval, periodIncrement);
 

@@ -52,7 +52,7 @@ export default () => {
   return (
     <>
       <Text fontSize={tokens.fontSizes.xxl} marginBottom={tokens.space.medium}>
-        Hey, {firstName}
+        Hey {firstName},
       </Text>
       <Divider size="small" marginBottom={tokens.space.medium} />
       <Text fontSize={tokens.fontSizes.xl} marginBottom={tokens.space.medium}>

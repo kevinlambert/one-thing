@@ -6,9 +6,10 @@ import {
   Button,
   Heading,
   Text,
+  Flex,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { routePaths, routePathHelper } from "../../../AppRoutes";
 import store from "../../../data/store";
 import { updateAccount } from "../../../data/store/account";
@@ -71,9 +72,9 @@ export default () => {
 
   return (
     <FullLayout>
-      <Heading level={1}>Welcome</Heading>
+      <Heading level={1}>Welcome,</Heading>
       <Text marginBottom={tokens.space.large} fontSize={tokens.fontSizes.large}>
-        Let's get you setup
+        Let's get you set up
       </Text>
 
       <TextField
@@ -94,14 +95,22 @@ export default () => {
         value={formData.lastName}
         onChange={inputChangeHandler}
       ></TextField>
-      <CheckboxField
-        label="I accept the terms and conditions"
-        name="termsAndConditions"
-        value={formData.termsAndConditions}
-        errorMessage="You need to agree to the terms and conditions"
-        hasError={validationData.termsAndConditions}
-        onChange={inputChangeHandler}
-      />
+      <Flex gap={"0.3em"}>
+        <CheckboxField
+          label="I accept the "
+          name="termsAndConditions"
+          value={formData.termsAndConditions}
+          errorMessage="You need to agree to the terms and conditions"
+          hasError={validationData.termsAndConditions}
+          onChange={inputChangeHandler}
+        />
+        <Link
+          to={routePaths.TERMS_AND_CONDITIONS}
+          style={{ textDecoration: "underline" }}
+        >
+          terms and conditions
+        </Link>
+      </Flex>
       <Button
         marginTop={tokens.space.xxxl}
         isFullWidth={false}
