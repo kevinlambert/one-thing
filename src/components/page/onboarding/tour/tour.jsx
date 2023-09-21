@@ -15,393 +15,81 @@ import {
 
 import store from "../../../../data/store";
 import { updateAccount } from "../../../../data/store/account";
+import Footer from "./Footer";
+import Tagline from "./Tagline";
+import ItsAllAbout from "./ItsAllAbout";
+import CouldBe from "./CouldBe";
+import IsNot from "./IsNot";
+import IsAbout from "./IsAbout";
 
-const WorldOfDistraction = () => {
+const Template = ({ subHeading, content }) => {
   const { tokens } = useTheme();
 
   return (
     <>
+      <Text marginTop={tokens.space.medium} fontSize={tokens.fontSizes.xl}>
+        {subHeading}
+      </Text>
       <Divider
         size="small"
-        marginTop={tokens.space.xxl}
-        marginBottom={tokens.space.small}
+        marginTop={tokens.space.xs}
+        marginBottom={tokens.space.large}
       />
-      <Text fontSize={tokens.fontSizes.xxl}>
-        In a world of distraction
-        <br />
-        there is{" "}
-        <span style={{ fontWeight: "bold" }}>
-          <OneThingText />
-        </span>
-        <br />
-        <span style={{ fontWeight: "bold" }}>you</span> can do
-      </Text>
+      {content()}
     </>
   );
 };
 
-const NOT = () => {
-  const { tokens } = useTheme();
+const TaglineTemplate = () => <Template subHeading={""} content={Tagline} />;
 
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        <OneThingText /> is NOT?
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <View fontSize={tokens.fontSizes.large}>
-        <ul>
-          <li>
-            <OneThingText /> is{" "}
-            <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
-            <span style={{ fontWeight: "bold" }}>task list</span>
-          </li>
-          <li>
-            <OneThingText /> is{" "}
-            <span style={{ textDecoration: "underline" }}>NOT</span> a{" "}
-            <span style={{ fontWeight: "bold" }}>todo list</span>
-          </li>
-        </ul>
-      </View>
-    </div>
-  );
-};
-
-const IS = () => {
-  const { tokens } = useTheme();
-
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        <OneThingText /> is:
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <Text fontSize={tokens.fontSizes.large}>
-        <ul>
-          <li>part VISION - Where do I want to go?</li>
-          <li>part HOW - How do I get there?</li>
-          <li>
-            part FOCUS - Steer clear of distractions with "what can I do today?"
-          </li>
-        </ul>
-      </Text>
-    </div>
-  );
-};
-
-const VisionPart = () => {
-  const { tokens } = useTheme();
-
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        The VISION part
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <Text
-        fontSize={tokens.fontSizes.large}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        3 month focus period
-      </Text>
-      <Text fontSize={tokens.fontSizes.large}>
-        <ul>
-          <li>Where do I want to be in 3 months time?</li>
-          <li>
-            3 months is long enough in the future to get momentum and close
-            enough to give a sense of urgency.
-          </li>
-        </ul>
-      </Text>
-    </div>
-  );
-};
-
-const FocusPart = () => {
-  const { tokens } = useTheme();
-
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        The FOCUS part
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <Text
-        fontSize={tokens.fontSizes.large}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        This week & today
-      </Text>
-      <Text fontSize={tokens.fontSizes.large}>
-        <ul>
-          <li>
-            You are prompted to consider what you will do{" "}
-            <span style={{ textDecoration: "underline" }}>this week</span>{" "}
-            towards your 3 Month <OneThingText />
-          </li>
-          <li>
-            You are prompted to consider what you will do{" "}
-            <span style={{ textDecoration: "underline" }}>today</span> towards
-            your week <OneThingText />.
-          </li>
-          <li>
-            You are reminded daily what your <OneThingText /> is.
-          </li>
-        </ul>
-      </Text>
-    </div>
-  );
-};
-
-const HowPart = () => {
-  const { tokens } = useTheme();
-
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        The HOW part
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <Text
-        fontSize={tokens.fontSizes.large}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        Thinking...
-      </Text>
-      <Text fontSize={tokens.fontSizes.large}>
-        <ul>
-          <li>
-            Your <span style={{ textDecoration: "underline" }}>this week</span>{" "}
-            <OneThingText /> and your{" "}
-            <span style={{ textDecoration: "underline" }}>today</span>{" "}
-            <OneThingText /> helps you to think about what steps you will take
-            in the immediate to move toward your 3 month <OneThingText />.
-          </li>
-        </ul>
-      </Text>
-    </div>
-  );
-};
-
-const Summary = () => {
-  const { tokens } = useTheme();
-
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
-        The Summary
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <Text
-        fontSize={tokens.fontSizes.large}
-        fontWeight={tokens.fontWeights.medium}
-        marginBottom={tokens.space.medium}
-      >
-        It's all about your <OneThingText /> :)
-      </Text>
-      <Text
-        fontSize={tokens.fontSizes.large}
-        marginBottom={tokens.space.medium}
-      >
-        - <OneThingText /> today.
-        <br />
-        - <OneThingText /> this week.
-        <br />
-        - <OneThingText /> over the next 3 months.
-      </Text>
-      <Text
-        fontSize={tokens.fontSizes.large}
-        marginBottom={tokens.space.medium}
-      >
-        Ideally your today, this week, and 3 month <OneThingText /> should be
-        related to each other. That helps give you momentum.
-      </Text>
-    </div>
-  );
-};
-
-const CouldBe = () => {
-  const { tokens } = useTheme();
-
-  return (
-    <div>
-      <Text
-        marginTop={tokens.space.medium}
-        fontSize={tokens.fontSizes.xl}
-        fontWeight={tokens.fontWeights.medium}
-      >
+const ItsAllAboutTemplate = () => (
+  <Template
+    subHeading={
+      <>
+        It's all about your <OneThingText />
+      </>
+    }
+    content={ItsAllAbout}
+  />
+);
+const CouldBeTemplate = () => (
+  <Template
+    subHeading={
+      <>
         Your <OneThingText /> could be:
-      </Text>
-      <Divider
-        size="small"
-        marginTop={tokens.space.xs}
-        marginBottom={tokens.space.large}
-      />
-      <View fontSize={tokens.fontSizes.large}>
-        <ul>
-          <li>relational</li>
-          <li>emotional</li>
-          <li>spiritual</li>
-          <li>physical</li>
-          <li>financial</li>
-          <li>personal</li>
-          <li>vocational</li>
-          <li>social</li>
-          <li>charitable</li>
-        </ul>
-        <Text>Or anything else you can think of...</Text>
-      </View>
-    </div>
-  );
-};
+      </>
+    }
+    content={CouldBe}
+  />
+);
+const IsNotTemplate = () => (
+  <Template
+    subHeading={
+      <>
+        <OneThingText /> is <i>not</i>:
+      </>
+    }
+    content={IsNot}
+  />
+);
+const IsAboutTemplate = () => (
+  <Template
+    subHeading={
+      <>
+        <OneThingText /> is about:
+      </>
+    }
+    content={IsAbout}
+  />
+);
 
 const stepContent = [
-  WorldOfDistraction,
-  Summary,
-  CouldBe,
-  NOT,
-  IS,
-  VisionPart,
-  FocusPart,
-  HowPart,
+  TaglineTemplate,
+  ItsAllAboutTemplate,
+  CouldBeTemplate,
+  IsNotTemplate,
+  IsAboutTemplate,
 ];
-
-const Footer = () => {
-  const { tokens } = useTheme();
-  const navigate = useNavigate();
-
-  let { step } = useParams();
-  const stepInt = parseInt(step || "0");
-
-  let isLoading = false;
-
-  const onNextHandler = () => {
-    isLoading = true;
-
-    const nextStep = stepInt + 1;
-
-    if (stepContent.length > nextStep) {
-      navigate(routePathHelper.tour({ step: nextStep }));
-    } else {
-      // TODO: end of tour
-      onSkipHandler();
-    }
-  };
-
-  const onBackHandler = () => {
-    isLoading = true;
-
-    isLoading = true;
-
-    const previousStep = stepInt - 1;
-
-    if (previousStep >= 0) {
-      navigate(routePathHelper.tour({ step: previousStep }));
-    }
-  };
-
-  const onSkipHandler = () => {
-    isLoading = true;
-
-    const state = store.getState();
-
-    store.dispatch(
-      updateAccount({
-        id: state.account.id,
-        isTourDone: true,
-      })
-    );
-    isLoading = false;
-    navigate(routePathHelper.focusPeriodThing());
-  };
-
-  return (
-    <Flex style={{ padding: "32px 16px" }} justifyContent={"space-between"}>
-      <Button
-        isFullWidth={false}
-        isLoading={isLoading}
-        variation="link"
-        loadingText="Saving..."
-        onClick={onSkipHandler}
-        ariaLabel="Skip"
-      >
-        Skip
-      </Button>
-      <div>
-        {stepInt > 0 ? (
-          <Button
-            isFullWidth={false}
-            isLoading={isLoading}
-            loadingText="Saving..."
-            onClick={onBackHandler}
-            ariaLabel="Back"
-          >
-            Back
-          </Button>
-        ) : null}
-        <Button
-          marginLeft={tokens.space.small}
-          isFullWidth={false}
-          isLoading={isLoading}
-          variation="primary"
-          loadingText="Saving..."
-          onClick={onNextHandler}
-          ariaLabel="Next"
-        >
-          Next
-        </Button>
-      </div>
-    </Flex>
-  );
-};
 
 export default () => {
   const { tokens } = useTheme();
@@ -411,7 +99,7 @@ export default () => {
   const Content = stepContent[stepInt];
 
   return (
-    <FullLayout footer={<Footer />}>
+    <FullLayout footer={<Footer totalNumberOfSteps={stepContent.length} />}>
       <Heading level={1}>Tour</Heading>
       <Content />
     </FullLayout>
