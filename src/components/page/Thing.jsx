@@ -18,15 +18,16 @@ const Thing = () => {
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
 
+  // things selector. if this is removesd then the I got this button does not update
+  const things = useSelector((state) => state.thing);
+
   // possibly use https://redux.js.org/usage/deriving-data-selectors
   const thingPeriod =
-    store
-      .getState()
-      .thing.find(
-        (item) =>
-          item.periodInterval === periodInterval &&
-          item.periodIncrement === periodIncrement
-      ) || {};
+    things.find(
+      (item) =>
+        item.periodInterval === periodInterval &&
+        item.periodIncrement === periodIncrement
+    ) || {};
 
   const title = thingPeriodTitle(periodInterval, periodIncrement);
 
