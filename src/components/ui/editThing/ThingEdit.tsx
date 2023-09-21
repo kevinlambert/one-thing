@@ -29,7 +29,7 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
   };
 
   const onSaveHandler = () => {
-    if (relateToSelection.length) {
+    if (relateToSelection.length || periodInterval === "month") {
       onSave({ content: contentText, relateToSelection });
       // at least one option was selected
     } else {
