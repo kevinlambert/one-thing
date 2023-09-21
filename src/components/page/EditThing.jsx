@@ -15,14 +15,14 @@ const EditThing = () => {
   let { periodInterval, periodIncrement } = useParams();
   periodIncrement = parseInt(periodIncrement);
 
-  const thingPeriod = useSelector(
-    (state) =>
-      state.thing.find(
-        (item) =>
-          item.periodInterval === periodInterval &&
-          item.periodIncrement === periodIncrement
-      ) || {}
-  );
+  const things = useSelector((state) => state.thing);
+
+  const thingPeriod =
+    things.find(
+      (item) =>
+        item.periodInterval === periodInterval &&
+        item.periodIncrement === periodIncrement
+    ) || {};
 
   const title = thingPeriodTitle(periodInterval, periodIncrement);
 
