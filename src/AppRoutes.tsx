@@ -8,7 +8,7 @@ import TourPage from "./components/page/onboarding/tour/tour";
 import MomentPage from "./components/templates/moment/Moment";
 import TermsAndConditionsPage from "./components/page/legal/TermsAndConditions";
 import DefaultLayout from "./components/layouts/Default";
-import CodeNavigate from "./util/CodeNavigate";
+import AppWrapper from "./AppWrapper";
 
 import {
   BrowserRouter,
@@ -91,7 +91,7 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<CodeNavigate />}>
+        <Route element={<AppWrapper />}>
           <Route path={routePaths.HOME} element={<PageHome />}></Route>
           <Route
             path={routePaths.TERMS_AND_CONDITIONS}

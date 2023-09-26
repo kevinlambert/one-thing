@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import store from "../data/store";
 
@@ -11,5 +11,5 @@ export default () => {
     navigate(store.getState().navigate);
   }, [navigateTo]);
 
-  return <Outlet />;
+  return <></>;
 };
