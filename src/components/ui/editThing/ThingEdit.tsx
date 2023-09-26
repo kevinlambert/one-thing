@@ -26,8 +26,11 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
 
   useEffect(() => {
     setContentText(content);
-    setRelateToSelection(relatedTo as unknown as VALUES[]);
-  }, [content, relatedTo]);
+  }, [content]);
+
+  useEffect(() => {
+    setRelateToSelection((relatedTo as unknown as VALUES[]) || []);
+  }, [relatedTo]);
 
   const onChangeHandler = (e: any) => {
     setContentText(e.currentTarget.value);
@@ -46,7 +49,7 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
   const onRelatedChangeHandler = (selection: VALUES[]) => {
     setRelateToSelection(selection);
 
-    if (selection.length) {
+    if (relateToSelection.length) {
       setShowRelatedError(false);
     }
   };
