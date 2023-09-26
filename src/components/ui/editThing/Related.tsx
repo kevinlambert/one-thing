@@ -42,6 +42,10 @@ export default ({
   const interval = periodInterval.toUpperCase();
 
   useEffect(() => {
+    if (Array.isArray(relatedTo)) setSelection(relatedTo);
+  }, [relatedTo]);
+
+  useEffect(() => {
     onChange(selection);
   }, [selection]);
 

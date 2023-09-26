@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { getStartAndEndDateBasedOnToday } from "./thingHelpers";
 import { Flex, useTheme } from "@aws-amplify/ui-react";
 import { dateTitle, thingPeriodTitle } from "../../util/format";
-
+import { routePathHelper } from "../../AppRoutes";
 import store from "../../data/store";
 import { saveThing, updateThing } from "../../data/store/thing";
 
@@ -42,6 +42,10 @@ const EditThing = () => {
     endDate,
   });
 
+  const thingDisplayPath = () => {
+    return routePathHelper.thing({ periodInterval, periodIncrement });
+  };
+
   const onSaveHandler = async ({ content, relateToSelection }) => {
     if (thingPeriod.id) {
       await store.dispatch(
@@ -67,7 +71,11 @@ const EditThing = () => {
       );
     }
 
-    navigate(-1);
+    navigate(thingDisplayPath());
+  };
+
+  const onCancelHandler = () => {
+    navigate(thingDisplayPath());
   };
 
   return (
@@ -78,6 +86,7 @@ const EditThing = () => {
         thingContent={thingPeriod.text}
         relatedTo={thingPeriod.isRelatedTo}
         onSave={onSaveHandler}
+        onCancel={onCancelHandler}
       ></ThingPeriodEdit>
     </FullLayout>
   );

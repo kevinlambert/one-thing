@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./_thing-edit.scss";
 import {
   TextAreaField,
@@ -21,8 +21,13 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
   const { tokens } = useTheme();
   let { periodInterval } = useParams();
   const [showRelatedError, setShowRelatedError] = useState<boolean>(false);
-  const [relateToSelection, setRelateToSelection] = useState<string[]>([]);
+  const [relateToSelection, setRelateToSelection] = useState<VALUES[]>([]);
   const [contentText, setContentText] = useState<string>(content || "");
+
+  useEffect(() => {
+    setContentText(content);
+    setRelateToSelection(relatedTo as unknown as VALUES[]);
+  }, [content, relatedTo]);
 
   const onChangeHandler = (e: any) => {
     setContentText(e.currentTarget.value);
@@ -38,7 +43,7 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
     }
   };
 
-  const onRelatedChangeHandler = (selection: string[]) => {
+  const onRelatedChangeHandler = (selection: VALUES[]) => {
     setRelateToSelection(selection);
 
     if (selection.length) {
@@ -53,12 +58,12 @@ export default ({ content, relatedTo, onSave, onCancel }: Props) => {
         label="Your ONE Thing"
         labelHidden={true}
         name="onething_content"
-        defaultValue={contentText}
+        value={contentText}
         onChange={onChangeHandler}
       />
       <Related
         periodInterval={periodInterval as PERIOD_INTERVAL}
-        relatedTo={relatedTo as unknown as VALUES[]}
+        relatedTo={relateToSelection}
         onChange={onRelatedChangeHandler}
         showError={showRelatedError}
       />

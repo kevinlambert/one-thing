@@ -1,10 +1,7 @@
-import * as React from "react";
+import React from "react";
 import ThingHeader from "../ui/ThingHeader";
 import ThingEdit from "../ui/editThing/ThingEdit";
-import IconButton from "../ui/IconButton";
-import { ReactComponent as IconMore } from "@material-design-icons/svg/outlined/close.svg";
 import "./_thing-period.scss";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   title: string;
@@ -12,15 +9,17 @@ type Props = {
   thingContent: string | null | undefined;
   relatedTo: string;
   onSave: any;
+  onCancel: any;
 };
 
-export default ({ title, date, thingContent, relatedTo, onSave }: Props) => {
-  const navigate = useNavigate();
-
-  const cancelHandler = () => {
-    navigate(-1);
-  };
-
+export default ({
+  title,
+  date,
+  thingContent,
+  relatedTo,
+  onSave,
+  onCancel,
+}: Props) => {
   return (
     <>
       <div className="thing-period-header">
@@ -31,7 +30,7 @@ export default ({ title, date, thingContent, relatedTo, onSave }: Props) => {
         content={thingContent || ""}
         relatedTo={relatedTo}
         onSave={onSave}
-        onCancel={cancelHandler}
+        onCancel={onCancel}
       ></ThingEdit>
     </>
   );
