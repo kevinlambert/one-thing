@@ -14,6 +14,7 @@ import { routePaths, routePathHelper } from "../../../AppRoutes";
 import store from "../../../data/store";
 import { updateAccount } from "../../../data/store/account";
 import logger from "../../../logger";
+import { runOnboarding } from "../../../util/onboarding";
 
 export default () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ export default () => {
         );
         isLoading = false;
 
-        navigate(routePathHelper.focusPeriodThing());
+        runOnboarding();
       } catch (e) {
         logger.error(e);
       }
