@@ -14,7 +14,7 @@ import store from "../data/store";
 import { Hub } from "aws-amplify";
 import { Auth } from "aws-amplify";
 
-let appRefreshCancel = null;
+let appRefreshInterval = null;
 
 export const authEventHook = () => {
   Hub.listen("auth", (data) => {
@@ -69,6 +69,7 @@ const SetupApp = async () => {
   await SetupSpheres();
   await SetCurrentSphere();
   await GetThings();
-  if (appRefreshCancel) appRefreshCancel();
-  appRefreshCancel = newDayIntervalCheck();
+
+  if (appRefreshInterval) clearInterval(appRefreshInterval);
+  appRefreshInterval = newDayIntervalCheck();
 };
