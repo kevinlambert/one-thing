@@ -6,6 +6,8 @@ import EditThingPage from "./components/page/EditThing";
 import Welcome from "./components/page/onboarding/Welcome";
 import TourPage from "./components/page/onboarding/tour/tour";
 import MomentPage from "./components/templates/moment/Moment";
+import PlansPage from "./components/page/account/PricingTable";
+import ManageBillingPage from "./components/page/account/ManageBilling";
 import TermsAndConditionsPage from "./components/page/legal/TermsAndConditions";
 import DefaultLayout from "./components/layouts/Default";
 import AppWrapper from "./AppWrapper";
@@ -81,6 +83,8 @@ export const routePaths = {
   },
   HOME: "/",
   TERMS_AND_CONDITIONS: "/termsandconditions",
+  PLANS: "/plans",
+  MANAGEBILLING: "/managebilling",
   ONBOARDING: {
     WELCOME: "/onboarding/welcome",
     TOUR: "/onboarding/tour/:step",
@@ -93,6 +97,11 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<AppWrapper />}>
           <Route path={routePaths.HOME} element={<PageHome />}></Route>
+          <Route path={routePaths.PLANS} element={<PlansPage />}></Route>
+          <Route
+            path={routePaths.MANAGEBILLING}
+            element={<ManageBillingPage />}
+          ></Route>
           <Route
             path={routePaths.TERMS_AND_CONDITIONS}
             element={<TermsAndConditionsPage />}

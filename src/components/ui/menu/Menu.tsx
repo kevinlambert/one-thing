@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 import "./_menu.scss";
 import { NavLink, useLocation } from "react-router-dom";
-import { routePathHelper } from "../../../AppRoutes";
+import { routePathHelper, routePaths } from "../../../AppRoutes";
 import IconButton from "../IconButton";
 import { ReactComponent as IconClose } from "@material-design-icons/svg/outlined/close.svg";
 import ModalBackground from "../modal";
@@ -40,6 +40,12 @@ export default ({ isMenuOpen, onCloseHandler }: Props) => {
 
         <div className="menu-items">
           <NavLink to={routePathHelper.tour({ step: 0 })}>View Tour</NavLink>
+        </div>
+        <div className="menu-items">
+          <NavLink to={routePaths.PLANS}>Plans</NavLink>
+        </div>
+        <div className="menu-items">
+          <NavLink to={routePaths.MANAGEBILLING}>Manage billing</NavLink>
         </div>
         <div className="menu-items">
           <a href="mailto:onething@lambert.com.co?subject=Feedback on ONE Thing App&body=">
