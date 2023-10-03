@@ -17,6 +17,11 @@
       },
       "api": {
         "OneThing": {}
+      },
+      "function": {
+        "stripewebhook": {
+          "secretsPathAmplifyAppId": "d1imzxqzesur6d"
+        }
       }
     }
   },
