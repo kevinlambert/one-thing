@@ -3,11 +3,15 @@ import "./_tabbar.scss";
 import { ReactComponent as IconCalenderMonth } from "@material-design-icons/svg/outlined/calendar_month.svg";
 import { ReactComponent as IconWeek } from "@material-design-icons/svg/outlined/calendar_view_week.svg";
 import { ReactComponent as IconToday } from "@material-design-icons/svg/outlined/today.svg";
+import { ReactComponent as IconHome } from "@material-design-icons/svg/outlined/home.svg";
 import IconButton from "./IconButton";
 import { NavLink } from "react-router-dom";
 
 export default () => (
   <div className="tabbar">
+    <NavLink to={"/"}>
+      <IconButton icon={<IconHome />} label="Home"></IconButton>
+    </NavLink>
     <NavLink to={"/thing/month/3"}>
       <IconButton
         icon={<IconCalenderMonth></IconCalenderMonth>}
