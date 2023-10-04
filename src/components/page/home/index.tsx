@@ -16,8 +16,6 @@ export default () => {
         item.periodIncrement === periodIncrement
     ) || {};
 
-  console.log(things);
-
   const threeMonthThing = findThing({
     periodInterval: "month",
     periodIncrement: 3,
