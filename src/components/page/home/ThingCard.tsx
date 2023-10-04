@@ -16,7 +16,7 @@ const ToDo = ({ path }: ToDoProps) => {
   return (
     <View>
       <Button size="small" variation="primary" onClick={onClickHandler}>
-        Set this
+        Set your ONE Thing
       </Button>
     </View>
   );

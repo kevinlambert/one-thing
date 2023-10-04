@@ -28,46 +28,41 @@ export default () => {
   });
   const todayThing = findThing({ periodInterval: "day", periodIncrement: 0 });
 
-  // this won't get rendered due to above redirect
   return (
     <DefaultLayout>
       <Flex direction={"column"} gap={tokens.space.xxxs}>
-        {threeMonthThing ? (
-          <ThingCard
-            periodTitle="3 month"
-            thingContent={threeMonthThing.text}
-            isLinked={
-              thisWeekThing.isRelatedTo &&
-              thisWeekThing.isRelatedTo.includes("MONTH3")
-            }
-            borderTopRound={true}
-            toDoPath={routePathHelper.thing({
-              periodInterval: "month",
-              periodIncrement: 3,
-            })}
-          />
-        ) : null}
-        {thisWeekThing ? (
-          <ThingCard
-            periodTitle="This week"
-            thingContent={thisWeekThing.text}
-            showLink
-            isLinked={
-              (thisWeekThing.isRelatedTo &&
-                thisWeekThing.isRelatedTo.includes("MONTH3")) ||
-              (todayThing.isRelatedTo &&
-                todayThing.isRelatedTo.includes("WEEK0"))
-            }
-            isLinkedIcon={
-              thisWeekThing.isRelatedTo &&
-              thisWeekThing.isRelatedTo.includes("MONTH3")
-            }
-            toDoPath={routePathHelper.thing({
-              periodInterval: "week",
-              periodIncrement: 0,
-            })}
-          />
-        ) : null}
+        <ThingCard
+          periodTitle="3 month"
+          thingContent={threeMonthThing.text}
+          isLinked={
+            thisWeekThing.isRelatedTo &&
+            thisWeekThing.isRelatedTo.includes("MONTH3")
+          }
+          borderTopRound={true}
+          toDoPath={routePathHelper.thing({
+            periodInterval: "month",
+            periodIncrement: 3,
+          })}
+        />
+
+        <ThingCard
+          periodTitle="This week"
+          thingContent={thisWeekThing.text}
+          showLink
+          isLinked={
+            (thisWeekThing.isRelatedTo &&
+              thisWeekThing.isRelatedTo.includes("MONTH3")) ||
+            (todayThing.isRelatedTo && todayThing.isRelatedTo.includes("WEEK0"))
+          }
+          isLinkedIcon={
+            thisWeekThing.isRelatedTo &&
+            thisWeekThing.isRelatedTo.includes("MONTH3")
+          }
+          toDoPath={routePathHelper.thing({
+            periodInterval: "week",
+            periodIncrement: 0,
+          })}
+        />
 
         <ThingCard
           periodTitle="Today"
