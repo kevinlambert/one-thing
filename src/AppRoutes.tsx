@@ -1,6 +1,6 @@
 import React from "react";
 
-import PageHome from "./components/page/Home";
+import PageHome from "./components/page/home";
 import PageThing from "./components/page/Thing";
 import EditThingPage from "./components/page/EditThing";
 import Welcome from "./components/page/onboarding/Welcome";
