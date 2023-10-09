@@ -98,6 +98,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_stripewebhook_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "stripewebhook"
+        }
+      ]
+    },
+    "AMPLIFY_function_stripewebhook_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "stripewebhook"
+        }
+      ]
+    },
     "AMPLIFY_function_stripewebhook_secretsPathAmplifyAppId": {
       "usedBy": [
         {

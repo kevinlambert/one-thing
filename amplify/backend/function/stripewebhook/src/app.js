@@ -49,7 +49,7 @@ const getStripeKey = async () => {
       WithDecryption: true,
     })
     .promise();
-  return Parameters[0].value;
+  return Parameters[0].Value;
 };
 
 // Enable CORS for all methods
@@ -59,6 +59,31 @@ app.use(function (req, res, next) {
   next();
 });
 
+const getCognitoUser = async () => {
+  const cognito = new aws.CognitoIdentityServiceProvider({
+    apiVersion: "2016-04-18",
+  });
+};
+
+const getUserByEmail = async (email) => {
+  var params = {
+    TableName: "account",
+    IndexName: "some-index",
+    KeyConditionExpression: "#email = :value",
+    ExpressionAttributeValues: { ":value": email },
+    ExpressionAttributeNames: { "#email": "email" },
+  };
+
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
+  try {
+    const data = await docClient.query(params).promise();
+    return { body: JSON.stringify(data) };
+  } catch (err) {
+    return { error: err };
+  }
+};
+
 app.post("/webhook/stripe", async function (req, res) {
   const stripeKey = await getStripeKey();
   const stripe = require("stripe")(stripeKey);
@@ -66,6 +91,10 @@ app.post("/webhook/stripe", async function (req, res) {
     req.body.data.object.customer
   );
   const userEmail = customer.email;
+
+  console.log("End point Hiit!!");
+  console.log(userEmail);
+  console.log(customer);
 
   // TODO: now what!!!
 

@@ -16,11 +16,14 @@
         "OneThing": {}
       },
       "api": {
-        "OneThing": {}
+        "OneThing": {},
+        "stripewebhook": {}
       },
       "function": {
         "stripewebhook": {
-          "secretsPathAmplifyAppId": "d1imzxqzesur6d"
+          "secretsPathAmplifyAppId": "d1imzxqzesur6d",
+          "deploymentBucketName": "amplify-onething-dev-90849-deployment",
+          "s3Key": "amplify-builds/stripewebhook-6f6b38576a5579574775-build.zip"
         }
       }
     }
