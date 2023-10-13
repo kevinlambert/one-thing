@@ -91,6 +91,13 @@
           ],
           "category": "auth",
           "resourceName": "OneThing"
+        },
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ],
+          "category": "api",
+          "resourceName": "OneThing"
         }
       ],
       "providerPlugin": "awscloudformation",

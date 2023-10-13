@@ -21,6 +21,9 @@ See the License for the specific language governing permissions and limitations 
 */
 
 /* Amplify Params - DO NOT EDIT
+	API_ONETHING_ACCOUNTTABLE_ARN
+	API_ONETHING_ACCOUNTTABLE_NAME
+	API_ONETHING_GRAPHQLAPIIDOUTPUT
 	AUTH_ONETHING_USERPOOLID
 	ENV
 	REGION
@@ -30,6 +33,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const awsServerlessExpressMiddleware = require("aws-serverless-express/middleware");
 const aws = require("aws-sdk");
+
+const environment = process.env.ENV;
+const userPoolId = process.env.AUTH_ONETHING_USERPOOLID;
+const apiGraphQLAPIIdOutput = process.env.API_ONETHING_GRAPHQLAPIIDOUTPUT;
+const accountTableName = `Account-${apiGraphQLAPIIdOutput}-${environment}`;
 
 // declare a new express app
 const app = express();
@@ -59,25 +67,43 @@ app.use(function (req, res, next) {
   next();
 });
 
-const getCognitoUser = async () => {
+const getCognitoUsername = async (email) => {
   const cognito = new aws.CognitoIdentityServiceProvider({
     apiVersion: "2016-04-18",
   });
+
+  const users = await cognito.listUsers({
+    AttributesToGet: ["username"],
+    Filter: `email=\"${email}\"`,
+    Limit: 1,
+    UserPoolId: userPoolId,
+  });
+
+  console.log(users);
+
+  return ({ username } = users[0]);
 };
 
-const getUserByEmail = async (email) => {
-  var params = {
-    TableName: "account",
-    IndexName: "some-index",
-    KeyConditionExpression: "#email = :value",
-    ExpressionAttributeValues: { ":value": email },
-    ExpressionAttributeNames: { "#email": "email" },
+const updateUserAccount = async ({ email, plan, planStatus }) => {
+  const username = await getCognitoUsername(email);
+
+  const params = {
+    TableName: accountTableName,
+    Key: {
+      userID: username,
+    },
+    UpdateExpression: "set planStatus = :planStatus, plan = :plan",
+    ExpressionAttributeValues: {
+      ":planStatus": planStatus,
+      ":plan": plan,
+    },
+    ReturnValues: "ALL_NEW",
   };
 
   const docClient = new AWS.DynamoDB.DocumentClient();
 
   try {
-    const data = await docClient.query(params).promise();
+    const data = await docClient.update(params).promise();
     return { body: JSON.stringify(data) };
   } catch (err) {
     return { error: err };
@@ -90,13 +116,12 @@ app.post("/webhook/stripe", async function (req, res) {
   const customer = await stripe.customers.retrieve(
     req.body.data.object.customer
   );
-  const userEmail = customer.email;
+  const email = customer.email;
 
-  console.log("End point Hiit!!");
-  console.log(userEmail);
-  console.log(customer);
+  // TODO: capture plan and plan status
 
-  // TODO: now what!!!
+  const result = await updateUserAccount(email, "ONE", "VALID");
+  console.log(result);
 
   res.json({ success: "post call succeed!", url: req.url, body: req.body });
 });

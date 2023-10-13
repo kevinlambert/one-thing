@@ -7,6 +7,14 @@
         "update",
         "delete"
       ]
+    },
+    "storage": {
+      "Account:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
     }
   },
   "lambdaLayers": [],
