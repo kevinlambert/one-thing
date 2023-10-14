@@ -72,38 +72,68 @@ const getCognitoUsername = async (email) => {
     apiVersion: "2016-04-18",
   });
 
-  const users = await cognito.listUsers({
-    AttributesToGet: ["username"],
-    Filter: `email=\"${email}\"`,
+  // prettier-ignore
+  const params = {
+    AttributesToGet: ["email"],
+    Filter: "email=\"" + email + "\"", 
     Limit: 1,
     UserPoolId: userPoolId,
-  });
+  };
 
-  console.log(users);
+  const data = await cognito.listUsers(params).promise();
+  const { Username } = data.Users[0];
 
-  return ({ username } = users[0]);
+  return Username;
+};
+
+const getAccountId = async (username) => {
+  const docClient = new aws.DynamoDB.DocumentClient();
+  // IndexName: "some-index",
+  // KeyConditionExpression: "#name = :value",
+  // ExpressionAttributeValues: { ":username": username },
+
+  // prettier-ignore
+  var params = {
+    TableName: accountTableName,
+    IndexName: "byUserID",
+    KeyConditionExpression: "userID = :userID",
+    ExpressionAttributeValues: {
+      ":userID": username,
+    },
+  };
+
+  const data = await docClient.query(params).promise();
+  console.log(data);
+  return data[0].id;
 };
 
 const updateUserAccount = async ({ email, plan, planStatus }) => {
-  const username = await getCognitoUsername(email);
-
-  const params = {
-    TableName: accountTableName,
-    Key: {
-      userID: username,
-    },
-    UpdateExpression: "set planStatus = :planStatus, plan = :plan",
-    ExpressionAttributeValues: {
-      ":planStatus": planStatus,
-      ":plan": plan,
-    },
-    ReturnValues: "ALL_NEW",
-  };
-
-  const docClient = new AWS.DynamoDB.DocumentClient();
-
   try {
+    const username = await getCognitoUsername(email);
+    // ":planStatus": planStatus,
+    // UpdateExpression: "set planStatus = :planStatus, plan = :plan",
+
+    const accountId = await getAccountId(username);
+
+    const params = {
+      TableName: accountTableName,
+      Key: {
+        id: accountId,
+      },
+      UpdateExpression: "set #account_plan = :plan",
+      ExpressionAttributeNames: {
+        "#account_plan": "plan",
+      },
+      ExpressionAttributeValues: {
+        ":plan": plan,
+      },
+      ReturnValues: "ALL_NEW",
+    };
+
+    const docClient = new aws.DynamoDB.DocumentClient();
+
     const data = await docClient.update(params).promise();
+    // console.log(data);
     return { body: JSON.stringify(data) };
   } catch (err) {
     return { error: err };
@@ -111,19 +141,23 @@ const updateUserAccount = async ({ email, plan, planStatus }) => {
 };
 
 app.post("/webhook/stripe", async function (req, res) {
-  const stripeKey = await getStripeKey();
-  const stripe = require("stripe")(stripeKey);
-  const customer = await stripe.customers.retrieve(
-    req.body.data.object.customer
-  );
-  const email = customer.email;
+  // const stripeKey = await getStripeKey();
+  // const stripe = require("stripe")(stripeKey);
+  // const customer = await stripe.customers.retrieve(
+  //   req.body.data.object.customer
+  // );
+  // const email = customer.email;
 
   // TODO: capture plan and plan status
 
-  const result = await updateUserAccount(email, "ONE", "VALID");
+  const result = await updateUserAccount({
+    email: "kevin@lambert.com.co",
+    plan: "ONE",
+    planStatus: "VALID",
+  });
   console.log(result);
 
-  res.json({ success: "post call succeed!", url: req.url, body: req.body });
+  res.json({ success: "post call succeed!", url: req.url, body: result });
 });
 
 app.listen(3000, function () {
