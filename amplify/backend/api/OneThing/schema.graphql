@@ -1,4 +1,4 @@
-type GroupMember @model @auth(rules: [{allow: public}]) {
+type GroupMember @model @auth(rules: [{ allow: public }]) {
   id: ID!
   isAdmin: Boolean
   groupID: ID! @index(name: "byGroup")
@@ -6,35 +6,52 @@ type GroupMember @model @auth(rules: [{allow: public}]) {
   GroupMemberThingPeriod: ThingPeriod @hasOne
 }
 
-type Group @model @auth(rules: [{allow: public}]) {
+type Group @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String
   description: String
   GroupMembers: [GroupMember] @hasMany(indexName: "byGroup", fields: ["id"])
 }
 
-type Account @model @auth(rules: [{allow: owner, operations: [create, read, update]}, {allow: public}]) {
+type Account
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update] }
+      { allow: public }
+    ]
+  ) {
   id: ID!
   firstName: String
   lastName: String
   plan: String
   AccountSphere: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
-  AccountThingPeriod: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
-  AccountGroupMembers: [ThingPeriod] @hasMany(indexName: "byAccount", fields: ["id"])
-  userID: ID
+  AccountThingPeriod: [ThingPeriod]
+    @hasMany(indexName: "byAccount", fields: ["id"])
+  AccountGroupMembers: [ThingPeriod]
+    @hasMany(indexName: "byAccount", fields: ["id"])
+  userID: ID! @index(name: "byUserID")
   isTourDone: Boolean
   termsAndConditionsAccepted: AWSDateTime
 }
 
-type Sphere @model @auth(rules: [{allow: public}]) {
+type Sphere @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String
-  SphereThingPeriods: [ThingPeriod] @hasMany(indexName: "bySphere", fields: ["id"])
+  SphereThingPeriods: [ThingPeriod]
+    @hasMany(indexName: "bySphere", fields: ["id"])
   isDefault: Boolean
   accountID: ID! @index(name: "byAccount")
 }
 
-type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, update]}, {allow: public}]) {
+type ThingPeriod
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, read, update] }
+      { allow: public }
+    ]
+  ) {
   id: ID!
   text: String
   periodInterval: String
@@ -46,4 +63,3 @@ type ThingPeriod @model @auth(rules: [{allow: owner, operations: [create, read, 
   sphereID: ID! @index(name: "bySphere")
   accountID: ID! @index(name: "byAccount")
 }
- 

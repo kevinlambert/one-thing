@@ -1,4 +1,5 @@
 import { createAccount } from "../data/store/account";
+import { setUser } from "../data/store/user";
 import { createSphere, getSpheresByAccountID } from "../data/store/sphere";
 import { setCurrentSphere } from "../data/store/current";
 import { getCurrentThingsBySphere } from "../data/store/thing";
@@ -11,7 +12,7 @@ import { Auth } from "aws-amplify";
 export const SetupAccount = async () => {
   try {
     const user = await Auth.currentAuthenticatedUser();
-
+    await store.dispatch(setUser(user));
     await store.dispatch(createAccount(user.username));
   } catch (e) {
     logger.error(e);

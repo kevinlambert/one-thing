@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "auth": {
+      "OneThing": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "Account:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "secretNames": [
+    "stripe_key"
+  ]
+}
