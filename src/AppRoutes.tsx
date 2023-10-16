@@ -1,10 +1,10 @@
 import React from "react";
 
 import PageHome from "./components/page/home";
-import PageThing from "./components/page/Thing";
-import EditThingPage from "./components/page/EditThing";
+import ViewThingPage from "./components/page/thing/ViewThing";
+import EditThingPage from "./components/page/thing/EditThing";
 import Welcome from "./components/page/onboarding/Welcome";
-import TourPage from "./components/page/onboarding/tour/tour";
+import TourPage from "./components/page/onboarding/tour";
 import MomentPage from "./components/templates/moment/Moment";
 import PlansPage from "./components/page/account/PricingTable";
 import ManageBillingPage from "./components/page/account/ManageBilling";
@@ -107,7 +107,10 @@ const AppRoutes = () => {
             element={<TermsAndConditionsPage />}
           ></Route>
           <Route element={<AnimationLayout />}>
-            <Route path={routePaths.THING.VIEW} element={<PageThing />}></Route>
+            <Route
+              path={routePaths.THING.VIEW}
+              element={<ViewThingPage />}
+            ></Route>
           </Route>
           <Route path={routePaths.THING.EDIT} element={<EditThingPage />} />
           <Route

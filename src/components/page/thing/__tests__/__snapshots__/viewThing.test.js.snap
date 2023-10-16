@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+Array [
+  <div
+    className="thing-period-header"
+  >
+    <div>
+      <div
+        className="header1"
+      >
+        Today
+      </div>
+      <div
+        className="subTitle1"
+      >
+        Monday, Oct 16, 2023
+      </div>
+    </div>
+    <a
+      className=""
+      href="/thing/day/0/edit"
+      onClick={[Function]}
+    >
+      <div
+        className="icon-button icon-button--underline"
+      >
+        <svg>
+          edit_calendar.svg
+        </svg>
+        <div
+          className="icon-button__label"
+        >
+          Edit
+        </div>
+      </div>
+    </a>
+  </div>,
+  <div
+    className="margin-bottom-16"
+  />,
+  <div
+    className="thing-display"
+  >
+    doing one thing
+  </div>,
+  <div
+    className="amplify-flex"
+    inert={null}
+    style={
+      Object {
+        "justifyContent": "flex-end",
+        "marginBlockStart": "var(--amplify-space-medium)",
+      }
+    }
+  >
+    <button
+      aria-pressed={false}
+      className="amplify-button amplify-field-group__control amplify-button--small amplify-togglebutton i-got-this"
+      data-fullwidth={false}
+      data-size="small"
+      inert={null}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      I got to this
+    </button>
+  </div>,
+]
+`;

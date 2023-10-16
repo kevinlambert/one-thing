@@ -1,14 +1,14 @@
 import React from "react";
-import FullLayout from "../layouts/Full";
-import ThingPeriodEdit from "../templates/ThingPeriodEdit";
+import FullLayout from "../../layouts/Full";
+import ThingPeriodEdit from "../../templates/ThingPeriodEdit";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getStartAndEndDateBasedOnToday } from "./thingHelpers";
+import { getStartAndEndDateBasedOnToday } from "../helpers/DateHelper";
 import { Flex, useTheme } from "@aws-amplify/ui-react";
-import { dateTitle, thingPeriodTitle } from "../../util/format";
-import { routePathHelper } from "../../AppRoutes";
-import store from "../../data/store";
-import { saveThing, updateThing } from "../../data/store/thing";
+import { dateTitle, thingPeriodTitle } from "../../../util/format";
+import { routePathHelper } from "../../../AppRoutes";
+import store from "../../../data/store";
+import { saveThing, updateThing } from "../../../data/store/thing";
 
 const EditThing = () => {
   const navigate = useNavigate();
