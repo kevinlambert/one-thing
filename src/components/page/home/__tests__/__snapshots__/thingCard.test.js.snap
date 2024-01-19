@@ -1,0 +1,330 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot - linked 1`] = `
+<div
+  inert={null}
+  style={
+    Object {
+      "backgroundColor": "var(--amplify-colors-green-10)",
+      "borderColor": "var(--amplify-colors-green-60)",
+      "borderStyle": "solid",
+      "borderWidth": "var(--amplify-border-widths-small)",
+      "padding": "var(--amplify-space-medium)",
+      "position": "relative",
+    }
+  }
+>
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-xs)",
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  >
+    TITLE
+  </p>
+  <hr
+    aria-orientation="horizontal"
+    className="amplify-divider amplify-divider--horizontal amplify-divider--small"
+    data-size="small"
+    inert={null}
+    style={
+      Object {
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-large)",
+      }
+    }
+  >
+    CONTENT
+  </p>
+</div>
+`;
+
+exports[`snapshot - linked icon 1`] = `
+<div
+  inert={null}
+  style={
+    Object {
+      "backgroundColor": "var(--amplify-colors-neutral-10)",
+      "borderColor": "var(--amplify-colors-neutral-40)",
+      "borderStyle": "solid",
+      "borderWidth": "var(--amplify-border-widths-small)",
+      "padding": "var(--amplify-space-medium)",
+      "position": "relative",
+    }
+  }
+>
+  <div
+    className="amplify-flex linkIcon"
+    inert={null}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "var(--amplify-colors-white)",
+        "borderColor": "var(--amplify-colors-green-60)",
+        "borderRadius": "16px",
+        "borderStyle": "solid",
+        "borderWidth": "var(--amplify-border-widths-small)",
+        "color": "var(--amplify-colors-green-60)",
+        "height": "32px",
+        "justifyContent": "center",
+        "position": "absolute",
+        "top": "-16px",
+        "width": "32px",
+      }
+    }
+  >
+    <svg
+      className="amplify-icon"
+      fill="currentColor"
+      height="1em"
+      inert={null}
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        Object {
+          "color": undefined,
+          "height": "22px",
+        }
+      }
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+      <path
+        d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"
+      />
+    </svg>
+  </div>
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-xs)",
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  >
+    TITLE
+  </p>
+  <hr
+    aria-orientation="horizontal"
+    className="amplify-divider amplify-divider--horizontal amplify-divider--small"
+    data-size="small"
+    inert={null}
+    style={
+      Object {
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-large)",
+      }
+    }
+  >
+    CONTENT
+  </p>
+</div>
+`;
+
+exports[`snapshot - not linked 1`] = `
+<div
+  inert={null}
+  style={
+    Object {
+      "backgroundColor": "var(--amplify-colors-neutral-10)",
+      "borderColor": "var(--amplify-colors-neutral-40)",
+      "borderStyle": "solid",
+      "borderWidth": "var(--amplify-border-widths-small)",
+      "padding": "var(--amplify-space-medium)",
+      "position": "relative",
+    }
+  }
+>
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-xs)",
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  >
+    TITLE
+  </p>
+  <hr
+    aria-orientation="horizontal"
+    className="amplify-divider amplify-divider--horizontal amplify-divider--small"
+    data-size="small"
+    inert={null}
+    style={
+      Object {
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-large)",
+      }
+    }
+  >
+    CONTENT
+  </p>
+</div>
+`;
+
+exports[`snapshot - rounded corners bottom 1`] = `
+<div
+  inert={null}
+  style={
+    Object {
+      "backgroundColor": "var(--amplify-colors-neutral-10)",
+      "borderColor": "var(--amplify-colors-neutral-40)",
+      "borderRadius": "0 0 var(--amplify-space-medium) var(--amplify-space-medium)",
+      "borderStyle": "solid",
+      "borderWidth": "var(--amplify-border-widths-small)",
+      "padding": "var(--amplify-space-medium)",
+      "position": "relative",
+    }
+  }
+>
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-xs)",
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <hr
+    aria-orientation="horizontal"
+    className="amplify-divider amplify-divider--horizontal amplify-divider--small"
+    data-size="small"
+    inert={null}
+    style={
+      Object {
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-large)",
+      }
+    }
+  />
+  <div
+    inert={null}
+    style={Object {}}
+  >
+    <button
+      className="amplify-button amplify-field-group__control amplify-button--primary amplify-button--small"
+      data-fullwidth={false}
+      data-size="small"
+      data-variation="primary"
+      inert={null}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Set your ONE Thing
+    </button>
+  </div>
+</div>
+`;
+
+exports[`snapshot - rounded corners top 1`] = `
+<div
+  inert={null}
+  style={
+    Object {
+      "backgroundColor": "var(--amplify-colors-neutral-10)",
+      "borderColor": "var(--amplify-colors-neutral-40)",
+      "borderRadius": "var(--amplify-space-medium) var(--amplify-space-medium) 0 0",
+      "borderStyle": "solid",
+      "borderWidth": "var(--amplify-border-widths-small)",
+      "padding": "var(--amplify-space-medium)",
+      "position": "relative",
+    }
+  }
+>
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-xs)",
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <hr
+    aria-orientation="horizontal"
+    className="amplify-divider amplify-divider--horizontal amplify-divider--small"
+    data-size="small"
+    inert={null}
+    style={
+      Object {
+        "marginBlockEnd": "var(--amplify-space-xxs)",
+      }
+    }
+  />
+  <p
+    className="amplify-text"
+    inert={null}
+    style={
+      Object {
+        "fontSize": "var(--amplify-font-sizes-large)",
+      }
+    }
+  />
+  <div
+    inert={null}
+    style={Object {}}
+  >
+    <button
+      className="amplify-button amplify-field-group__control amplify-button--primary amplify-button--small"
+      data-fullwidth={false}
+      data-size="small"
+      data-variation="primary"
+      inert={null}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Set your ONE Thing
+    </button>
+  </div>
+</div>
+`;

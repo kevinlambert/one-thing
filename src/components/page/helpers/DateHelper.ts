@@ -1,9 +1,15 @@
-import { dateTitle, weekDateRange, monthDateRange } from "../../util/format";
+import { dateTitle, weekDateRange, monthDateRange } from "../../../util/format";
+import PeriodInterval from "../../../util/periods/periodInterval";
+
+type StartEndProps = {
+  periodInterval: PeriodInterval;
+  periodIncrement: number;
+};
 
 export const getStartAndEndDateBasedOnToday = ({
   periodInterval,
   periodIncrement,
-}) => {
+}: StartEndProps) => {
   if (periodInterval === "week" && periodIncrement === 0) {
     const { startOfWeekDate, endOfWeekDate } = weekDateRange(new Date());
     return {
@@ -27,11 +33,20 @@ export const getStartAndEndDateBasedOnToday = ({
   }
 };
 
+type FormatDateTitleProps = {
+  thingPeriod: {
+    startDate: string | null | undefined;
+    endDate: string | null | undefined;
+  };
+  periodInterval: PeriodInterval;
+  periodIncrement: number;
+};
+
 export const formatDateTitle = ({
   thingPeriod,
   periodInterval,
   periodIncrement,
-}) => {
+}: FormatDateTitleProps) => {
   const startEndDates = getStartAndEndDateBasedOnToday({
     periodInterval,
     periodIncrement,

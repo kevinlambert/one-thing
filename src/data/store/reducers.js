@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import userReducer from "./user";
 import accountReducer from "./account";
 import loadingReducer from "./loading";
 import navigateReducer from "./navigate";
@@ -8,6 +9,7 @@ import thingReducer from "./thing";
 import previousThingReducer from "./previousThing";
 
 export default combineReducers({
+  user: userReducer,
   account: accountReducer,
   loading: loadingReducer,
   navigate: navigateReducer,

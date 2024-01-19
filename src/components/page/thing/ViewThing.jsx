@@ -1,17 +1,17 @@
 import React from "react";
-import ThingPeriod from "../templates/ThingPeriod";
+import ThingPeriod from "../../templates/ThingPeriod";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Flex, useTheme } from "@aws-amplify/ui-react";
-import { formatDateTitle } from "./thingHelpers";
-import { thingPeriodTitle, AWSDate } from "../../util/format";
+import { formatDateTitle } from "../helpers/DateHelper";
+import { thingPeriodTitle, AWSDate } from "../../../util/format";
 
-import store from "../../data/store";
-import { updateThing } from "../../data/store/thing";
+import store from "../../../data/store";
+import { updateThing } from "../../../data/store/thing";
 
-import Moment from "../templates/moment/Moment";
-import Yesterday from "../templates/yesterday/Yesterday";
-import IGotThis from "../templates/IGotThis/IGotTothis";
+import Moment from "../../templates/moment/Moment";
+import Yesterday from "../../templates/yesterday/Yesterday";
+import IGotThis from "../../templates/IGotThis/IGotTothis";
 
 const Thing = () => {
   const { tokens } = useTheme();
@@ -21,7 +21,9 @@ const Thing = () => {
   // things selector. if this is removesd then the I got this button does not update
   const things = useSelector((state) => state.thing);
   const previousThing = useSelector((state) => state.previousThing);
-  const previousThingInterval = previousThing[periodInterval];
+  const previousThingInterval = previousThing
+    ? previousThing[periodInterval]
+    : null;
   const previousThingIntervalIncrement = previousThingInterval
     ? previousThingInterval[periodIncrement]
     : null;
