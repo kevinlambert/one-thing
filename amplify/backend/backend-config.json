@@ -25,8 +25,9 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+              "apiKeyExpirationDate": "2025-01-18T09:09:54.336Z",
+              "apiKeyExpirationDays": 365,
+              "description": "onething"
             },
             "authenticationType": "API_KEY"
           }
